@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[LEFORDÍTATLAN SZÖVEG]",
+
+  "mainTitle": "Payload Vendég",
+  "creditsTitle": "Köszönetlista",
+
+  "loadingTick1": "Töltés.",
+  "loadingTick2": "Töltés..",
+  "loadingTick3": "Töltés...",
+
+  "ok": "Ok",
+  "select": "Választ",
+  "refresh": "Frissít",
+  "credits": "Köszönetlista",
+  "return": "Vissza",
+
+  "pageIndicator": "Oldal %i / %i",
+
+  "errorFatal": "VÉGLEGES HIBA!",
+  "errorCloseApplication": "Kérem zárja be az alkalmazást.",
+  "errorLoadLibjbc": "Nem sikerült betölteni a libjbc.prx fájlt",
+  "errorInitializeLibjbc": "Nem sikerült beindítani a libjbc-t",
+  "errorJailbreak": "Sikertelen jailbreak",
+
+  "errorPathOutput": "Útvonal: %s",
+  "errorIndexOutput": "Index: #%zu",
+  "errorHexOutput": "Hiba: 0x%08x",
+
+  "errorMetadata": "Metaadat Hiba",
+  "errorMetadataRead": "Nem sikerült beolvasni a `meta.json` fájlt",
+  "errorMetadataMalformed": "Rosszul formázott `meta.json`",
+  "errorMetadataMissingName": "Hiányzó payload név",
+  "errorMetadataMissingFilename": "Hiányzó payload fájlnév",
+  "errorMetadataNullName": "NULL payload név",
+  "errorMetadataMissingPayloadFile": "Nem található a payload fájl",
+
+  "errorNoPayloads": "Nincs elérhető payload :(",
+
+  "errorSendPayloadOpen": "Nem sikerült megnyitni a payloadot",
+  "errorSendPayloadBuffer": "Nem sikerült helyet foglalni a payload puffernek",
+  "errorSendPayloadRead": "Nem sikerült beolvasni a payloadot a pufferbe",
+  "errorSendPayloadCreateSocket": "Nem sikerült létrehozni a socketet",
+  "errorSendPayloadConnect": "Nem sikerült a szerverhez csatlakozni",
+  "errorSendPayloadSend": "Nem sikerült elküldeni a payloadot",
+
+  "errorShellcodeOpen": "Nem sikerült kinyitni: %s",
+  "errorShellcodeMmap": "Nem sikerült az mmap a payloadon",
+  "errorShellcodeMprotect": "Nem sikerült az mprotect a payloadon",
+  "errorShellcodeMunmap": "Nem sikerült az munmap a payloadon",
+
+  "creditsText": ""
+}

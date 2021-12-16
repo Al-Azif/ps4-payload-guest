@@ -1,0 +1,52 @@
+{
+  "unknownKey": "번역되어 있지 않은 텍스트",
+
+  "mainTitle": "페이로드 게스트",
+  "creditsTitle": "크레딧",
+
+  "loadingTick1": "로딩중.",
+  "loadingTick2": "로딩중..",
+  "loadingTick3": "로딩중...",
+
+  "ok": "확정",
+  "select": "선택",
+  "refresh": "새로고침",
+  "credits": "크레딧",
+  "return": "돌아가기",
+
+  "pageIndicator": "페이지 %i / %i",
+
+  "errorFatal": "치명적 에러!",
+  "errorCloseApplication": "어플리케이션을 닫으십시오.",
+  "errorLoadLibjbc": "libjbc.prx 불러올 수 없음",
+  "errorInitializeLibjbc": "libjbc 초기화 할 수 없음",
+  "errorJailbreak": "jailbreak 불가",
+
+  "errorPathOutput": "경로: %s",
+  "errorIndexOutput": "인덱스: #%zu",
+  "errorHexOutput": "에러: 0x%08x",
+
+  "errorMetadata": "Metadata 에러",
+  "errorMetadataRead": "meta.json` 읽을 수 없음`",
+  "errorMetadataMalformed": "`meta.json`형식 에러",
+  "errorMetadataMissingName": "페이로드명 없음",
+  "errorMetadataMissingFilename": "페이로드 파일명 없음",
+  "errorMetadataNullName": "NULL 페이로드명",
+  "errorMetadataMissingPayloadFile": "페이로드를 찾을 수 없음",
+
+  "errorNoPayloads": "사용 가능한 페이로드 없음 :(",
+
+  "errorSendPayloadOpen": "페이로드를 열 수 없음",
+  "errorSendPayloadBuffer": "페이로드 버퍼를 할당할 수 없음",
+  "errorSendPayloadRead": "페이로드 버퍼로 읽을 수 없음",
+  "errorSendPayloadCreateSocket": "소켓을 만들 수 없음",
+  "errorSendPayloadConnect": "서버에 접속할 수 없음",
+  "errorSendPayloadSend": "페이로드를 전송할 수 없음",
+
+  "errorShellcodeOpen": "열 수 없음: %s",
+  "errorShellcodeMmap": "mmap 페이로드 불가",
+  "errorShellcodeMprotect": "mprotect 페이로드 불가",
+  "errorShellcodeMunmap": "munmap 페이로드 실패",
+
+  "creditsText": ""
+}

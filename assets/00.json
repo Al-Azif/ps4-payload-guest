@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[翻訳されていないテキスト]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "クレジット",
+
+  "loadingTick1": "読み込み中.",
+  "loadingTick2": "読み込み中..",
+  "loadingTick3": "読み込み中...",
+
+  "ok": "Ok",
+  "select": "セレクト",
+  "refresh": "リフレッシュ",
+  "credits": "クレジット",
+  "return": "戻る",
+
+  "pageIndicator": "ページ %i / %i",
+
+  "errorFatal": "深刻なエラー!",
+  "errorCloseApplication": "アプリケーションを閉じてください。",
+  "errorLoadLibjbc": "libjbc.prxを読み込めません。",
+  "errorInitializeLibjbc": "libjbcを初期化できません。",
+  "errorJailbreak": "脱獄できません。",
+
+  "errorPathOutput": "パス: %s",
+  "errorIndexOutput": "インデックス: #%zu",
+  "errorHexOutput": "エラー: 0x%08x",
+
+  "errorMetadata": "メタデータエラー",
+  "errorMetadataRead": "`meta.json`を読み取れませんでした。",
+  "errorMetadataMalformed": "不正な形式の `meta.json`",
+  "errorMetadataMissingName": "ペイロード名がありません",
+  "errorMetadataMissingFilename": "ペイロードファイル名がありません",
+  "errorMetadataNullName": "NULLペイロード名",
+  "errorMetadataMissingPayloadFile": "ペイロードが見つかりません",
+
+  "errorNoPayloads": "利用可能なペイロードがありません :(",
+
+  "errorSendPayloadOpen": "ペイロードを開くことができません",
+  "errorSendPayloadBuffer": "ペイロードバッファを割り当てることができません",
+  "errorSendPayloadRead": "ペイロードをバッファに読み込めません",
+  "errorSendPayloadCreateSocket": "ソケットを作成できません",
+  "errorSendPayloadConnect": "サーバーに接続できません",
+  "errorSendPayloadSend": "ペイロードを送信できません",
+
+  "errorShellcodeOpen": "開けません: %s",
+  "errorShellcodeMmap": "ペイロードをmmapできません",
+  "errorShellcodeMprotect": "ペイロードを保護できません",
+  "errorShellcodeMunmap": "ペイロードのmunmapに失敗しました",
+
+  "creditsText": ""
+}

@@ -1,0 +1,52 @@
+{
+  "unknownKey": "",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Créditos",
+
+  "loadingTick1": "Cargando.",
+  "loadingTick2": "Cargando..",
+  "loadingTick3": "Cargando...",
+
+  "ok": "ok",
+  "select": "Seleccionar",
+  "refresh": "Refrescar",
+  "credits": "Créditos",
+  "return": "Volver",
+
+  "pageIndicator": "Página %i/%i",
+
+  "errorFatal": "¡ERROR FATAL!",
+  "errorCloseApplication": "Por favor cierra la aplicación.",
+  "errorLoadLibjbc": "No se puede cargar libjbc.prx",
+  "errorInitializeLibjbc": "No se puede iniciar libjbc",
+  "errorJailbreak": "Incapaz de hacer jailbreak",
+
+  "errorPathOutput": "Ruta: %s",
+  "errorIndexOutput": "Index: #%zu",
+  "errorHexOutput": "Error: 0x%08x",
+
+  "errorMetadata": "Error de Metadatos",
+  "errorMetadataRead": "No se pudo leer `meta.json`",
+  "errorMetadataMalformed": "`Meta.json` con formato incorrecto",
+  "errorMetadataMissingName": "Falta el nombre del Payload",
+  "errorMetadataMissingFilename": "Falta el nombre del archivo del Payload",
+  "errorMetadataNullName": "Nombre del Payload NULL",
+  "errorMetadataMissingPayloadFile": "No se pudo encontrar el Payload",
+
+  "errorNoPayloads": "No hay Payloads disponibles :(",
+
+  "errorSendPayloadOpen": "",
+  "errorSendPayloadBuffer": "",
+  "errorSendPayloadRead": "",
+  "errorSendPayloadCreateSocket": "",
+  "errorSendPayloadConnect": "",
+  "errorSendPayloadSend": "",
+
+  "errorShellcodeOpen": "No se puede abrir: %s",
+  "errorShellcodeMmap": "No se pudo aplicar mmap en el payload",
+  "errorShellcodeMprotect": "No se pudo aplicar mprotect en el payload",
+  "errorShellcodeMunmap": "No se pudo aplicar munmap en el payload",
+
+  "creditsText": ""
+}

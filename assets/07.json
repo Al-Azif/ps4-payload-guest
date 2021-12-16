@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[TEXTO NÃO TRADUZIDO]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Créditos",
+
+  "loadingTick1": "A carregar.",
+  "loadingTick2": "A carregar..",
+  "loadingTick3": "A carregar...",
+
+  "ok": "Ok",
+  "select": "Selecionar",
+  "refresh": "Atualizar",
+  "credits": "Créditos",
+  "return": "Voltar",
+
+  "pageIndicator": "Página %i / %i",
+
+  "errorFatal": "ERRO FATAL!",
+  "errorCloseApplication": "Por favor, feche a Aplicação.",
+  "errorLoadLibjbc": "Não foi possível carregar o libjbc.prx",
+  "errorInitializeLibjbc": "Não foi possível iniciar o libjbc",
+  "errorJailbreak": "Erro ao realizar jailbreak",
+
+  "errorPathOutput": "Local: %s",
+  "errorIndexOutput": "Índice: #%zu",
+  "errorHexOutput": "Erro: 0x%08x",
+
+  "errorMetadata": "Erro de Metadata",
+  "errorMetadataRead": "Falha ao ler o 'meta.json'",
+  "errorMetadataMalformed": "'meta.json' com formato incorrecto",
+  "errorMetadataMissingName": "Nome do payload em falta",
+  "errorMetadataMissingFilename": "Nome do ficheiro do payload em falta",
+  "errorMetadataNullName": "Nome do payload nulo",
+  "errorMetadataMissingPayloadFile": "Payload não encontrado",
+
+  "errorNoPayloads": "Nenhum payload disponível :(",
+
+  "errorSendPayloadOpen": "Não foi possível abrir o payload",
+  "errorSendPayloadBuffer": "Não foi possível alocar o payload na memória",
+  "errorSendPayloadRead": "Falha na leitura do payload ao copiar para a memória",
+  "errorSendPayloadCreateSocket": "Não foi possível criar o Socket",
+  "errorSendPayloadConnect": "Falha ao ligar ao servidor",
+  "errorSendPayloadSend": "Falha ao enviar o payload",
+
+  "errorShellcodeOpen": "Falha ao abrir: %s",
+  "errorShellcodeMmap": "Falha ao executar o mmap para o payload",
+  "errorShellcodeMprotect": "Falha ao executar o mprotect para o payload",
+  "errorShellcodeMunmap": "Falha ao executar o munmap para o payload",
+
+  "creditsText": ""
+}

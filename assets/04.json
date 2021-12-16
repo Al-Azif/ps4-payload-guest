@@ -1,0 +1,52 @@
+{
+  "unknownKey": "",
+
+  "mainTitle": "Payload Gast",
+  "creditsTitle": "Credits",
+
+  "loadingTick1": "Laden.",
+  "loadingTick2": "Laden..",
+  "loadingTick3": "Laden...",
+
+  "ok": "Ok",
+  "select": "Auswählen",
+  "refresh": "Neu laden",
+  "credits": "Credits",
+  "return": "Zurück",
+
+  "pageIndicator": "Seite %i / %i",
+
+  "errorFatal": "FATALER FEHLER!",
+  "errorCloseApplication": "Bitte schließen Sie die Anwendung",
+  "errorLoadLibjbc": "Fehler beim laden von libjbc.prx",
+  "errorInitializeLibjbc": "Fehler beim initialisieren von libjbc",
+  "errorJailbreak": "Jailbreak fehlgeschlagen",
+
+  "errorPathOutput": "Datei Pfad: %s",
+  "errorIndexOutput": "Index: #%zu",
+  "errorHexOutput": "Fehler: 0x%08x",
+
+  "errorMetadata": "Metadaten Fehler",
+  "errorMetadataRead": "Fehler beim lesen von `meta.json`",
+  "errorMetadataMalformed": "Ungültiges Format von `meta.json`",
+  "errorMetadataMissingName": "Payload hat keinen Namen",
+  "errorMetadataMissingFilename": "Payload hat keinen Dateinamen",
+  "errorMetadataNullName": "Payload Name ist NULL",
+  "errorMetadataMissingPayloadFile": "Payload konnte unter dem angegebenen Pfad nicht gefunden werden",
+
+  "errorNoPayloads": "Keine payloads verfügbar :(",
+
+  "errorSendPayloadOpen": "",
+  "errorSendPayloadBuffer": "",
+  "errorSendPayloadRead": "",
+  "errorSendPayloadCreateSocket": "",
+  "errorSendPayloadConnect": "",
+  "errorSendPayloadSend": "",
+
+  "errorShellcodeOpen": "Fehler beim Öffnen von: %s",
+  "errorShellcodeMmap": "Fehler bei mmap des payloads",
+  "errorShellcodeMprotect": "Fehler bei mprotect des payloads",
+  "errorShellcodeMunmap": "Fehler bei munmap des payloads",
+
+  "creditsText": ""
+}

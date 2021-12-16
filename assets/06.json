@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[TEKST NIET VERTAALD]",
+
+  "mainTitle": "Payload Gast",
+  "creditsTitle": "Credits",
+
+  "loadingTick1": "Laden.",
+  "loadingTick2": "Laden..",
+  "loadingTick3": "Laden...",
+
+  "ok": "Ok",
+  "select": "Selecteer",
+  "refresh": "Herversen",
+  "credits": "Credits",
+  "return": "Terug",
+
+  "pageIndicator": "Page %i / %i",
+
+  "errorFatal": "FATALE FOUT!",
+  "errorCloseApplication": "Sluit de applicatie.",
+  "errorLoadLibjbc": "Kan 'libjbc.prx' niet laden.",
+  "errorInitializeLibjbc": "Kan 'libjbc' niet initialiseren.",
+  "errorJailbreak": "Jailbreak mislukt.",
+
+  "errorPathOutput": "Pad: %s",
+  "errorIndexOutput": "Index: #%zu",
+  "errorHexOutput": "Fout: 0x%08x",
+
+  "errorMetadata": "Metadata Fout",
+  "errorMetadataRead": "Kan `meta.json` niet lezen.",
+  "errorMetadataMalformed": "meta.json misvormd.",
+  "errorMetadataMissingName": "Payload naam niet gevonden.",
+  "errorMetadataMissingFilename": "Payload bestandsnaam niet gevonden.",
+  "errorMetadataNullName": "NULL payload naam.",
+  "errorMetadataMissingPayloadFile": "Kan payload niet vinden.",
+
+  "errorNoPayloads": "Geen payloads beschikbaar :(",
+
+  "errorSendPayloadOpen": "Kan payload niet openen.",
+  "errorSendPayloadBuffer": "Payload buffer kan niet worden toegewezen.",
+  "errorSendPayloadRead": "Payload kan niet in buffer worden gelezen.",
+  "errorSendPayloadCreateSocket": "Kan geen socket maken.",
+  "errorSendPayloadConnect": "Kan niet verbinden met de server.",
+  "errorSendPayloadSend": "Payload kan niet worden verzonden.",
+
+  "errorShellcodeOpen": "Kan bestand niet openen: %s",
+  "errorShellcodeMmap": "Mmap kan niet worden toegewezen op payload.",
+  "errorShellcodeMprotect": "Mprotect kan niet worden toegewezen op payload.",
+  "errorShellcodeMunmap": "Munmap kan niet worden toegewezen op payload.",
+
+  "creditsText": ""
+}

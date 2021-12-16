@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[نص غير مترجم]",
+
+  "mainTitle": "Payload مضيف",
+  "creditsTitle": "إشادة",
+
+  "loadingTick1": "تحميل.",
+  "loadingTick2": "تحميل..",
+  "loadingTick3": "تحميل...",
+
+  "ok": "موافق",
+  "select": "إختيار",
+  "refresh": "تحديث",
+  "credits": "",
+  "return": "رجوع",
+
+  "pageIndicator": "الصفحة %i / %i",
+
+  "errorFatal": "خطأ فادح!",
+  "errorCloseApplication": "الرجاء إغلاق التطبيق.",
+  "errorLoadLibjbc": "تعذر تحميل libjbc.prx",
+  "errorInitializeLibjbc": "تعذر تهيئة libjbc",
+  "errorJailbreak": "غير قادر على كسر الحماية",
+
+  "errorPathOutput": "المسار: %s",
+  "errorIndexOutput": "الفهرس: #%zu",
+  "errorHexOutput": "خطأ: 0x%08x",
+
+  "errorMetadata": "خطأ في البيانات الوصفية",
+  "errorMetadataRead": "تعذر قراءة `meta.json`",
+  "errorMetadataMalformed": "معطوب `meta.json`",
+  "errorMetadataMissingName": "اسم payload مفقود",
+  "errorMetadataMissingFilename": "اسم ملف payload مفقود",
+  "errorMetadataNullName": "اسم payload فارغ",
+  "errorMetadataMissingPayloadFile": "تعذر العثور على payload",
+
+  "errorNoPayloads": "لا توجد payloads متاحة :(",
+
+  "errorSendPayloadOpen": "تعذر فتح payload",
+  "errorSendPayloadBuffer": "تعذر تخصيص التخزين المؤقت للـ payload",
+  "errorSendPayloadRead": "تعذر قراءة payload في التخزين المؤقت",
+  "errorSendPayloadCreateSocket": "تعذر إنشاء المقبس",
+  "errorSendPayloadConnect": "تعذر الاتصال بالخادم",
+  "errorSendPayloadSend": "تعذر إرسال payload",
+
+  "errorShellcodeOpen": "تعذر فتح: %s",
+  "errorShellcodeMmap": "تعذر mmap payload",
+  "errorShellcodeMprotect": "تعذر حماية payload",
+  "errorShellcodeMunmap": "فشل في munmap payload",
+
+  "creditsText": ""
+}

@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[NIEPRZETŁUMACZONY TEKST]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Autorzy",
+
+  "loadingTick1": "Wczytywanie.",
+  "loadingTick2": "Wczytywanie..",
+  "loadingTick3": "Wczytywanie...",
+
+  "ok": "Ok",
+  "select": "Wybierz",
+  "refresh": "Odśwież",
+  "credits": "Autorzy",
+  "return": "Wstecz",
+
+  "pageIndicator": "Strona %i / %i",
+
+  "errorFatal": "BŁĄD KRYTYCZNY!",
+  "errorCloseApplication": "Proszę zamknąć aplikację.",
+  "errorLoadLibjbc": "Nie można załadować libjbc.prx",
+  "errorInitializeLibjbc": "Nie można zainicjować libjbc",
+  "errorJailbreak": "Nie można wykonać jailbreaka",
+
+  "errorPathOutput": "Ścieżka: %s",
+  "errorIndexOutput": "Indeks: #%zu",
+  "errorHexOutput": "Błąd: 0x%08x",
+
+  "errorMetadata": "Błąd Metadanych",
+  "errorMetadataRead": "Błąd odczytu `meta.json`",
+  "errorMetadataMalformed": "Nieprawidłowa zawartość `meta.json`",
+  "errorMetadataMissingName": "Brak nazwy payloadu",
+  "errorMetadataMissingFilename": "Brak nazwy pliku payloadu",
+  "errorMetadataNullName": "Nazwa payloadu jest pusta lub zawiera wartość NULL",
+  "errorMetadataMissingPayloadFile": "Nie można odnaleźć payloadu",
+
+  "errorNoPayloads": "Brak dostępnych payloadów :(",
+
+  "errorSendPayloadOpen": "Błąd odczytu payloadu",              
+  "errorSendPayloadBuffer": " Nie mozna zaalokować bufora payloadu",
+  "errorSendPayloadRead": "Nie można wczytać payloadu do bufora", 
+  "errorSendPayloadCreateSocket": "Nie można stworzyć socketu", 
+  "errorSendPayloadConnect": "Nie można połączyć się z serwerem",
+  "errorSendPayloadSend": "Nie można wysłać payloadu",
+
+  "errorShellcodeOpen": "Nie można otworzyć: %s",
+  "errorShellcodeMmap": "Nie można zmapować payloadu",
+  "errorShellcodeMprotect": "Nie można zabezpieczyć pamięci dla mapowania payloadu",
+  "errorShellcodeMunmap": "Błąd przy usunięciu mapowania payloadu",
+
+  "creditsText": ""
+}

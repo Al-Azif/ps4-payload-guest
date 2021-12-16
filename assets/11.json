@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[缺少翻译 测试]",
+
+  "mainTitle": "插件注入器",
+  "creditsTitle": "感谢列表",
+
+  "loadingTick1": "正在载入.",
+  "loadingTick2": "正在载入..",
+  "loadingTick3": "正在载入...",
+
+  "ok": "确定",
+  "select": "选择",
+  "refresh": "刷新",
+  "credits": "感谢",
+  "return": "返回",
+
+  "pageIndicator": "页面 %i / %i",
+
+  "errorFatal": "严重错误!",
+  "errorCloseApplication": "请关闭应用.",
+  "errorLoadLibjbc": "无法加载 libjbc.prx",
+  "errorInitializeLibjbc": "无法初始化 libjbc",
+  "errorJailbreak": "无法越狱",
+
+  "errorPathOutput": "路径(Path): %s",
+  "errorIndexOutput": "索引号(Index): #%zu",
+  "errorHexOutput": "错误: 0x%08x",
+
+  "errorMetadata": "元数据 错误",
+  "errorMetadataRead": "无法读取 `meta.json`",
+  "errorMetadataMalformed": "`meta.json`格式错误",
+  "errorMetadataMissingName": "插件名 丢失",
+  "errorMetadataMissingFilename": "插件 文件名丢失",
+  "errorMetadataNullName": "空 插件名",
+  "errorMetadataMissingPayloadFile": "无法找到 插件",
+
+  "errorNoPayloads": "没有可激活的插件 :(",
+
+  "errorSendPayloadOpen": "无法打开插件",
+  "errorSendPayloadBuffer": "无法分配插件缓存",
+  "errorSendPayloadRead": "无法将插件载入缓存",
+  "errorSendPayloadCreateSocket": "无法创建 socket",
+  "errorSendPayloadConnect": "无法连接到服务器",
+  "errorSendPayloadSend": "无法发送插件",
+
+  "errorShellcodeOpen": "无法打开: %s",
+  "errorShellcodeMmap": "插件无法 执行mmap",
+  "errorShellcodeMprotect": "插件无法 执行mprotect",
+  "errorShellcodeMunmap": "插件 执行munmap 失败",
+
+  "creditsText": ""
+}

@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[Δεν έχει μεταγλωτιστεί]",
+
+  "mainTitle": "Περιηγητής Payload",
+  "creditsTitle": "Συντελεστές",
+
+  "loadingTick1": "Φόρτωση.",
+  "loadingTick2": "Φόρτωση..",
+  "loadingTick3": "Φόρτωση...",
+
+  "ok": "Ok",
+  "select": "Επιλέξτε",
+  "refresh": "Επαναφόρτωση",
+  "credits": "Συντελεστές",
+  "return": "Επιστροφή",
+
+  "pageIndicator": "Σελίδα %i / %i",
+
+  "errorFatal": "ΜΟΙΡΑΙΟ ΣΦΑΛΜΑ!",
+  "errorCloseApplication": "Παρακαλώ Κλείστε την Εφαρμογή.",
+  "errorLoadLibjbc": "Δεν είναι δυνατή η φόρτωση του libjbc.prx",
+  "errorInitializeLibjbc": "Δεν είναι δυνατή η προετοιμασία του libjbc",
+  "errorJailbreak": "Απέτυχε το jailbreak",
+
+  "errorPathOutput": "Μονοπάτι διαδρομής: %s",
+  "errorIndexOutput": "Ευρετήριο: #%zu",
+  "errorHexOutput": "Σφάλμα: 0x%08x",
+
+  "errorMetadata": "Πρόβλημα Μεταδεδομένων",
+  "errorMetadataRead": "Δεν μπόρεσε να διαβαστεί το `meta.json`",
+  "errorMetadataMalformed": "Ακατάλληλη μορφή του `meta.json`",
+  "errorMetadataMissingName": "λείπει το όνομα του payload",
+  "errorMetadataMissingFilename": "Λείπει το όνομα του τύπου αρχείου του payload",
+  "errorMetadataNullName": "Άκυρο όνομα payload",
+  "errorMetadataMissingPayloadFile": "Δεν είναι δυνατή η εύρεση του payload",
+
+  "errorNoPayloads": "Δεν υπάρχουν διαθέσιμα payloads :(",
+
+  "errorSendPayloadOpen": "Αδυναμία ανοίγματος του payload",
+  "errorSendPayloadBuffer": "Αδυναμία κατανομής ενδιάμεσης μνήμης του payload",
+  "errorSendPayloadRead": "Αδυναμία ανάγνωσης της ενδιάμεσης μνήμης του payload",
+  "errorSendPayloadCreateSocket": "Αδυναμία δημιουργίας υποδοχής",
+  "errorSendPayloadConnect": "Αδυναμία σύνδεσης στο διακομιστή",
+  "errorSendPayloadSend": "Αδυναμία αποστολής του payload",
+
+  "errorShellcodeOpen": "Δεν είναι δυνατό το άνοιγμα: %s",
+  "errorShellcodeMmap": "Δεν μπορεί να γίνει mmap για το payload",
+  "errorShellcodeMprotect": "Δεν είναι δυνατό το mprotect του payload",
+  "errorShellcodeMunmap": "Απέτυχε το munmap του payload",
+
+  "creditsText": ""
+}

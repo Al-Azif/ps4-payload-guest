@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[UNTRANSLATED TEXT]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Credits",
+
+  "loadingTick1": "Loading.",
+  "loadingTick2": "Loading..",
+  "loadingTick3": "Loading...",
+
+  "ok": "Ok",
+  "select": "Select",
+  "refresh": "Refresh",
+  "credits": "Credits",
+  "return": "Return",
+
+  "pageIndicator": "Page %i / %i",
+
+  "errorFatal": "FATAL ERROR!",
+  "errorCloseApplication": "Please close the Application.",
+  "errorLoadLibjbc": "Unable to load libjbc.prx",
+  "errorInitializeLibjbc": "Unable to initialize libjbc",
+  "errorJailbreak": "Unable to jailbreak",
+
+  "errorPathOutput": "Path: %s",
+  "errorIndexOutput": "Index: #%zu",
+  "errorHexOutput": "Error: 0x%08x",
+
+  "errorMetadata": "Metadata Error",
+  "errorMetadataRead": "Could not read `meta.json`",
+  "errorMetadataMalformed": "Malformed `meta.json`",
+  "errorMetadataMissingName": "Missing payload name",
+  "errorMetadataMissingFilename": "Missing payload filename",
+  "errorMetadataNullName": "NULL payload name",
+  "errorMetadataMissingPayloadFile": "Unable to find payload",
+
+  "errorNoPayloads": "No payloads available :(",
+
+  "errorSendPayloadOpen": "Unable to open payload",
+  "errorSendPayloadBuffer": "Unable to allocate payload buffer",
+  "errorSendPayloadRead": "Unable to read payload into buffer",
+  "errorSendPayloadCreateSocket": "Unable to create socket",
+  "errorSendPayloadConnect": "Unable to connect to server",
+  "errorSendPayloadSend": "Unable to send payload",
+
+  "errorShellcodeOpen": "Unable to open: %s",
+  "errorShellcodeMmap": "Unable to mmap payload",
+  "errorShellcodeMprotect": "Unable to mprotect payload",
+  "errorShellcodeMunmap": "Failed to munmap payload",
+
+  "creditsText": ""
+}

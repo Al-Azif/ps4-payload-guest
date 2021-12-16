@@ -1,0 +1,53 @@
+{
+  "unknownKey": "",
+
+  "mainTitle": "Vizitator Payload(Incărcătură)",
+  "creditsTitle": "Credite",
+
+  "loadingTick1": "Se Incarcă.",
+  "loadingTick2": "Se Incarcă..",
+  "loadingTick3": "Se Incarcă...",
+
+  "ok": "Bine",
+  "select": "Selectează",
+  "refresh": "Reîncarcă",
+  "credits": "Credite",
+  "return": "Revenire",
+
+  "pageIndicator": "Pagina %i / %i",
+
+  "errorFatal": "EROARE FATALĂ!",
+  "errorCloseApplication": "Te rugăm să închizi aplicația!!",
+  "errorLoadLibjbc": "Imposibil de încarcat fisierul libjbc.prx",
+  "errorInitializeLibjbc": "Nu se poate inițializa fisierul libjbc",
+  "errorJailbreak": "Nu se poate face jailbreak(evadarea)!",
+
+  "errorPathOutput": "Cale: %s",
+  "errorIndexOutput": "Indice: #%zu",
+  "errorHexOutput": "Eroare: 0x%08x",
+
+  "errorMetadata": "Eroare Metadata",
+  "errorMetadataRead": "Nu sa putut citi fișierul `meta.json`",
+  "errorMetadataMalformed": "Fișier eronat: `meta.json`",
+  "errorMetadataMissingName": "Numele încărcăturii lipsește",
+  "errorMetadataMissingFilename": "Numele fișierului de încărcare utilă lipsește",
+  "errorMetadataNullName": "Numele încărcăturii este Nulă",
+  "errorMetadataMissingPayloadFile": "Nu se poate găsi sarcina utilă",
+
+  "errorNoPayloads": "Nici-o încărcătura nu este valabilă :(",
+
+  "errorSendPayloadOpen": "",
+  "errorSendPayloadBuffer": "",
+  "errorSendPayloadRead": "",
+  "errorSendPayloadCreateSocket": "",
+  "errorSendPayloadConnect": "",
+  "errorSendPayloadSend": "",
+
+  "errorShellcodeOpen": "Imposibil de deschis: %s",
+  "errorShellcodeMmap": "Nu se poate utiliza mmap space",
+  "errorShellcodeMprotect": "Nu se poate utiliza payload mprotect",
+  "errorShellcodeMunmap": "Sarcina utilă munmap a eșuat",
+
+  "creditsText": ""
+  }
+

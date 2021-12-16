@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[TEKS BELUM DITERJEMAHKAN]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Penghargaan",
+  
+  "loadingTick1": "Memuat.",
+  "loadingTick2": "Memuat..",
+  "loadingTick3": "Memuat...",
+
+  "ok": "Ok",
+  "select": "Pilih",
+  "refresh": "Segarkan",
+  "credits": "Penghargaan",
+  "return": "Kembali",
+
+  "pageIndicator": "Halaman %i / %i",
+
+  "errorFatal": "KESALAHAN FATAL!",
+  "errorCloseApplication": "Mohon tutup aplikasi.",
+  "errorLoadLibjbc": "Tidak dapat memuat file libjbc.prx",
+  "errorInitializeLibjbc": "Tidak dapat menginisialisasi `libjbc`",
+  "errorJailbreak": "Tidak dapat meng-jailbreak",
+
+  "errorPathOutput": "Lokasi: %s",
+  "errorIndexOutput": "Indeks: #%zu",
+  "errorHexOutput": "Galat: 0x%08x",
+
+  "errorMetadata": "Kesalahan informasi data",
+  "errorMetadataRead": "Tidak dapat membaca file meta.json",
+  "errorMetadataMalformed": "Kesalahan format file meta.json",
+  "errorMetadataMissingName": "Nama payload tidak ada",
+  "errorMetadataMissingFilename": "Nama file payload tidak ada",
+  "errorMetadataNullName": "Nama payload tidak sah",
+  "errorMetadataMissingPayloadFile": "Tidak dapat menemukan file payload",
+
+  "errorNoPayloads": "Payload tidak tersedia :(",
+
+  "errorSendPayloadOpen": "Tidak dapat membuka payload",
+  "errorSendPayloadBuffer": "Tidak dapat mengalokasikan buffer payload",
+  "errorSendPayloadRead": "Tidak dapat membaca payload ke dalam buffer",
+  "errorSendPayloadCreateSocket": "Tidak dapat membuat soket",
+  "errorSendPayloadConnect": "Tidak dapat terhubung ke server",
+  "errorSendPayloadSend": "Tidak dapat mengirim payload",
+
+  "errorShellcodeOpen": "Tidak dapat membuka: %s",
+  "errorShellcodeMmap": "tidak dapat meng-mmap payload",
+  "errorShellcodeMprotect": "Tidak dapat meng-mprotect payload",
+  "errorShellcodeMunmap": "Gagal untuk meng-munmap payload",
+
+  "creditsText": ""
+}

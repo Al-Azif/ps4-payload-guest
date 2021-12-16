@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[Tercüme Edilmemiş Yazı]",
+
+  "mainTitle": "Payload Misafiri",
+  "creditsTitle": "Katkısı Olanlar",
+
+  "loadingTick1": "Yükleniyor.",
+  "loadingTick2": "Yükleniyor..",
+  "loadingTick3": "Yükleniyor...",
+
+  "ok": "Tamam",
+  "select": "Seç",
+  "refresh": "Yenile",
+  "credits": "Katkısı Olanlar",
+  "return": "Geri",
+
+  "pageIndicator": "Sayfa %i / %i",
+
+  "errorFatal": "KRİTİK HATA!",
+  "errorCloseApplication": "Lütfen Uygulamayı kapatın.",
+  "errorLoadLibjbc": "libjbc.prx yüklenemedi.",
+  "errorInitializeLibjbc": "libjbc başlatılamadı.",
+  "errorJailbreak": "Jailbreak başarısız oldu.",
+
+  "errorPathOutput": "Yol: %s",
+  "errorIndexOutput": "Sıra: #%zu",
+  "errorHexOutput": "Hata: 0x%08x",
+
+  "errorMetadata": "Metadata Hatası",
+  "errorMetadataRead": "`meta.json` okunamadı.",
+  "errorMetadataMalformed": "`meta.json` bozulmuş.",
+  "errorMetadataMissingName": "Payload adı bulunamadı.",
+  "errorMetadataMissingFilename": "Payload dosya adı bulunamadı.",
+  "errorMetadataNullName": "Payload ismi NULL",
+  "errorMetadataMissingPayloadFile": "Payload bulunamadı.",
+
+  "errorNoPayloads": "Kullanılabilir Payload bulunamadı :( ",
+
+  "errorSendPayloadOpen": "Payload açılamıyor",
+  "errorSendPayloadBuffer": "Payload belleğe yüklenemiyor",
+  "errorSendPayloadRead": "Payload bellekten okunamıyor",
+  "errorSendPayloadCreateSocket": "Soket oluşturulamıyor",
+  "errorSendPayloadConnect": "Servera bağlanılamıyor",
+  "errorSendPayloadSend": "Payload karşıya gönderilemiyor",
+
+  "errorShellcodeOpen": "Açılamıyor: %s",
+  "errorShellcodeMmap": "Payload mmap edilemiyor.",
+  "errorShellcodeMprotect": "Payload mprotect edilemiyor.",
+  "errorShellcodeMunmap": "Payload munmap edilemiyor.",
+
+  "creditsText": ""
+}

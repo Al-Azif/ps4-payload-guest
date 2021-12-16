@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[НЕПЕРЕВЕДЕННЫЙ ТЕКСТ]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Авторы",
+
+  "loadingTick1": "Загрузка.",
+  "loadingTick2": "Загрузка..",
+  "loadingTick3": "Загрузка...",
+
+  "ok": "ОК",
+  "select": "Выбрать",
+  "refresh": "Обновить",
+  "credits": "Авторы",
+  "return": "Назад",
+
+  "pageIndicator": "Страница %i / %i",
+
+  "errorFatal": "КРИТИЧЕСКАЯ ОШИБКА!",
+  "errorCloseApplication": "Пожалуйста, закройте приложение.",
+  "errorLoadLibjbc": "Не удается загрузить libjbc.prx",
+  "errorInitializeLibjbc": "Не удается инициализировать libjbc",
+  "errorJailbreak": "Не удается выполнить jailbreak",
+
+  "errorPathOutput": "Путь: %s",
+  "errorIndexOutput": "Индекс: #%zu",
+  "errorHexOutput": "Ошибка: 0x%08x",
+
+  "errorMetadata": "Ошибка метаданных",
+  "errorMetadataRead": "Не удается прочитать `meta.json`",
+  "errorMetadataMalformed": "Неверный формат `meta.json`",
+  "errorMetadataMissingName": "У payload отсутствует поле `name`",
+  "errorMetadataMissingFilename": "У payload отсутствует поле `filename`",
+  "errorMetadataNullName": "У payload значение `name` равно `NULL`",
+  "errorMetadataMissingPayloadFile": "Не удается найти payload",
+
+  "errorNoPayloads": "Нет доступных payload :(",
+
+  "errorSendPayloadOpen": "Не удается открыть payload",
+  "errorSendPayloadBuffer": "Не удается зарезервировать место для payload в буфере",
+  "errorSendPayloadRead": "Не удается поместить payload в буфер",
+  "errorSendPayloadCreateSocket": "Не удается создать socket",
+  "errorSendPayloadConnect": "Не удается подключиться к серверу",
+  "errorSendPayloadSend": "Не удается отправить payload",
+
+  "errorShellcodeOpen": "Не удается открыть: %s",
+  "errorShellcodeMmap": "Не удается реализовать mmap для payload",
+  "errorShellcodeMprotect": "Не удается реализовать mprotect для payload",
+  "errorShellcodeMunmap": "Не удается реализовать munmap для payload",
+
+  "creditsText": ""
+}

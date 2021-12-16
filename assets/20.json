@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[TEXTO SIN TRADUCCIÓN]",
+
+  "mainTitle": "Payload Guest",
+  "creditsTitle": "Créditos",
+
+  "loadingTick1": "Cargando.",
+  "loadingTick2": "Cargando..",
+  "loadingTick3": "Cargando...",
+
+  "ok": "Aceptar",
+  "select": "Seleccionar",
+  "refresh": "Refrescar",
+  "credits": "Créditos",
+  "return": "Regresar",
+
+  "pageIndicator": "Página %i / %i",
+
+  "errorFatal": "¡ERROR FATAL!",
+  "errorCloseApplication": "Por favor, cierre la aplicación.",
+  "errorLoadLibjbc": "No se pudo cargar libjbc.prx",
+  "errorInitializeLibjbc": "No se pudo inicializar libjbc",
+  "errorJailbreak": "No se pudo ejecutar el jailbreak",
+
+  "errorPathOutput": "Ruta: %s",
+  "errorIndexOutput": "Índice: #%zu",
+  "errorHexOutput": "Error: 0x%08x",
+
+  "errorMetadata": "Error de metadatos",
+  "errorMetadataRead": "No se pudo leer `meta.json`",
+  "errorMetadataMalformed": "Formato del archivo `meta.json` incorrecto",
+  "errorMetadataMissingName": "Falta el nombre del payload",
+  "errorMetadataMissingFilename": "Falta el nombre de archivo del payload",
+  "errorMetadataNullName": "Nombre del payload NULL",
+  "errorMetadataMissingPayloadFile": "No se encontró el payload",
+
+  "errorNoPayloads": "No hay payloads disponibles :(",
+
+  "errorSendPayloadOpen": "No se pudo abrir el payload",
+  "errorSendPayloadBuffer": "No se pudo asignar el buffer para el payload",
+  "errorSendPayloadRead": "No se pudo leer el payload en el buffer",
+  "errorSendPayloadCreateSocket": "No se pudo crear el socket",
+  "errorSendPayloadConnect": "No se pudo conectar al servidor",
+  "errorSendPayloadSend": "No se pudo enviar el payload",
+
+  "errorShellcodeOpen": "No se pudo abrir: %s",
+  "errorShellcodeMmap": "No se pudo aplicar mmap en el payload",
+  "errorShellcodeMprotect": "No se pudo aplicar mprotect en el payload",
+  "errorShellcodeMunmap": "No se pudo aplicar munmap en el payload",
+
+  "creditsText": ""
+}
