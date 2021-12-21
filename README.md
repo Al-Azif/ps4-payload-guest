@@ -35,6 +35,7 @@ Please take notice of the [LICENSE](https://github.com/Al-Azif/ps4-payload-guest
 
 This is a to do list of know issues/planned features. If all of these manage to get done it's essentially 100% complete and 100% overengineeered for what it was supposed to be.
 
+- [ ] Running `make` twice without `make clean` between causes a `error: duplicate symbol: main`
 - [ ] Run payload in separate process vs just a separate thread (To avoid bad payloads crashing the app)
   - Check PayloadsView.cpp:L311 for switching how the payload is currently being loaded
   - [ ] Is it possible to notifi() on error signal/coredump within fork'd process?

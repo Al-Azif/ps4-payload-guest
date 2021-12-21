@@ -31,7 +31,7 @@ TOOLCHAIN     := $(OO_PS4_TOOLCHAIN)
 ODIR          := build
 SDIR          := src
 EXTRAFLAGS    := $(INCLUDES) $(ERRORFLAGS) $(OTHERFLAGS)
-CFLAGS        := -cc1 -triple x86_64-pc-freebsd-elf -munwind-tables -fuse-init-array -emit-obj -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include $(EXTRAFLAGS)
+CFLAGS        := --target=x86_64-pc-freebsd12-elf -fPIC -funwind-tables -c -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include $(EXTRAFLAGS)
 CXXFLAGS      := $(CFLAGS) -isystem $(TOOLCHAIN)/include/c++/v1 $(OTHERCXXFLAGS)
 LDFLAGS       := -m elf_x86_64 -pie --script $(TOOLCHAIN)/link.x --eh-frame-hdr -L$(TOOLCHAIN)/lib $(LIBS) $(TOOLCHAIN)/lib/crt1.o
 
@@ -79,12 +79,11 @@ sce_sys/param.sfo: Makefile
 eboot.bin: guest.elf
 	$(CC) -cc1 -triple x86_64-pc-freebsd-elf -munwind-tables -fuse-init-array -emit-obj -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include -std=c99 -O3 -Wall -Wextra -Wpedantic -Werror -o $(ODIR)/eboot.o $(SDIR)/ChainLauncher.c
 	$(LD) $(ODIR)/eboot.o -o $(ODIR)/eboot.elf -m elf_x86_64 -pie --script $(TOOLCHAIN)/link.x --eh-frame-hdr -L$(TOOLCHAIN)/lib -lc -lkernel -lSceSystemService $(TOOLCHAIN)/lib/crt1.o
-	$(TOOLCHAIN)/bin/$(CDIR)/create-eboot -in=$(ODIR)/eboot.elf -out=$(ODIR)/eboot.oelf --paid 0x3800000000000011
+	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/eboot.elf -out=$(ODIR)/eboot.oelf --eboot "eboot.bin" --paid 0x3800000000000011
 
 guest.elf: $(ODIR) $(OBJS)
 	$(LD) $(ODIR)/*.o -o $(ODIR)/guest.elf $(LDFLAGS)
-	$(TOOLCHAIN)/bin/$(CDIR)/create-eboot -in=$(ODIR)/guest.elf -out=$(ODIR)/guest.oelf --paid 0x3800000000000011
-	mv eboot.bin guest.elf
+	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/guest.elf -out=$(ODIR)/guest.oelf --eboot "guest.elf" --paid 0x3800000000000011
 
 $(ODIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) -o $@ $<
