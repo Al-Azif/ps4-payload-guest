@@ -43,13 +43,13 @@ OBJS          := $(patsubst $(SDIR)/%.c, $(ODIR)/%.o, $(CFILES)) $(patsubst $(SD
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 		CC        := clang
-		CCX       := clang++
+		CXX       := clang++
 		LD        := ld.lld
 		CDIR      := linux
 endif
 ifeq ($(UNAME_S),Darwin)
 		CC        := /usr/local/opt/llvm/bin/clang
-		CCX       := /usr/local/opt/llvm/bin/clang++
+		CXX       := /usr/local/opt/llvm/bin/clang++
 		LD        := /usr/local/opt/llvm/bin/ld.lld
 		CDIR      := macos
 endif
@@ -89,7 +89,7 @@ $(ODIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 $(ODIR)/%.o: $(SDIR)/%.cpp
-	$(CCX) $(CXXFLAGS) -o $@ $<
+	$(CXX) $(CXXFLAGS) -o $@ $<
 
 $(ODIR):
 	@mkdir -p $@

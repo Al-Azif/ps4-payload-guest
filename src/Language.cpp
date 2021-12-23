@@ -47,7 +47,7 @@ std::string Language::Get(const std::string &p_Key) {
 int32_t Language::GetCode() {
   int32_t s_Code;
 
-  if (sceSystemServiceParamGetInt(SCE_SYSTEM_SERVICE_PARAM_ID_LANG, &s_Code) != 0) {
+  if (sceSystemServiceParamGetInt(ORBIS_SYSTEM_SERVICE_PARAM_ID_LANG, &s_Code) != 0) {
     logKernel(LL_Debug, "%s", "Unable to query language code");
     return 0x1;
   }

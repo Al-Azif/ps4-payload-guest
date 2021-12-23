@@ -16,7 +16,9 @@ extern "C" {
 #include <stdint.h>
 #include <stdio.h>
 
+#ifndef __LIBLOG_PC__
 #include <orbis/libkernel.h>
+#endif
 
 enum LogLevels {
   LL_None,
