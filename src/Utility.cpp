@@ -3,6 +3,7 @@
 #include "Language.h"
 
 #include "libLog.h"
+#include "libjbc.h"
 #include "notifi.h"
 
 // #include <orbis/ImeDialog.h>
@@ -10,6 +11,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <cstdlib>
 #include <string>
 
 #include <arpa/inet.h>
@@ -19,9 +21,224 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+MemoryProtected *g_Shellcode;
+
+jbc_cred m_Cred;
+jbc_cred m_RootCreds;
+
 std::string Utility::LastChars(std::string p_Input, int p_Num) {
   int s_InputSize = p_Input.size();
   return (p_Num > 0 && s_InputSize > p_Num) ? p_Input.substr(s_InputSize - p_Num) : "";
+}
+
+// https://stackoverflow.com/a/34221488
+void Utility::SanitizeJsonString(std::string &p_Input) {
+  // Add backslashes.
+  for (auto i = p_Input.begin();;) {
+    auto const s_Position = find_if(i, p_Input.end(), [](char const c) { return '\\' == c || '\'' == c || '"' == c; });
+    if (s_Position == p_Input.end()) {
+      break;
+    }
+    i = next(p_Input.insert(s_Position, '\\'), 2);
+  }
+
+  p_Input.erase(remove_if(p_Input.begin(), p_Input.end(), [](char const c) { return '\a' == c || '\b' == c || '\f' == c || '\n' == c || '\r' == c || '\t' == c || '\v' == c || '\?' == c || '\0' == c || '\x1A' == c; }), p_Input.end());
+}
+
+// https://github.com/Mish7913/cpp-library/blob/master/str/str.cpp
+std::wstring Utility::StrToWstr(const std::string &p_Input) {
+  std::string s_CurrentLocale = std::setlocale(LC_ALL, "");
+  const char *s_CharSource = p_Input.c_str();
+  size_t s_CharDestinationSize = std::mbstowcs(NULL, s_CharSource, 0) + 1;
+  wchar_t *s_CharDestination = new wchar_t[s_CharDestinationSize];
+  std::wmemset(s_CharDestination, 0, s_CharDestinationSize);
+  std::mbstowcs(s_CharDestination, s_CharSource, s_CharDestinationSize);
+  std::wstring s_Result = s_CharDestination;
+  delete[] s_CharDestination;
+  std::setlocale(LC_ALL, s_CurrentLocale.c_str());
+  return s_Result;
+}
+
+bool Utility::IsJailbroken() {
+  FILE *s_FilePointer = std::fopen("/user/.jailbreak", "w");
+  if (!s_FilePointer) {
+    return false;
+  }
+
+  std::fclose(s_FilePointer);
+  std::remove("/user/.jailbreak");
+  return true;
+}
+
+// Jailbreaks creds
+void Utility::Jailbreak() {
+  if (IsJailbroken()) {
+    return;
+  }
+
+  jbc_get_cred(&m_Cred);
+  m_RootCreds = m_Cred;
+  jbc_jailbreak_cred(&m_RootCreds);
+  jbc_set_cred(&m_RootCreds);
+}
+
+// Restores original creds
+void Utility::Unjailbreak() {
+  if (!IsJailbroken()) {
+    return;
+  }
+
+  jbc_set_cred(&m_Cred);
+}
+
+int Utility::memoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size) {
+  MemoryProtected *s_Mem;
+  long s_PageSize = sysconf(_SC_PAGESIZE);
+
+  if (p_Memory == NULL) {
+    return -1;
+  }
+
+  if (p_Size == 0) {
+    return -1;
+  }
+
+  s_Mem = (MemoryProtected *)std::calloc(sizeof(char), sizeof(MemoryProtected));
+  if (s_Mem == NULL) {
+    return -1;
+  }
+
+  // Align to s_PageSize
+  s_Mem->size = (p_Size / s_PageSize + 1) * s_PageSize;
+
+  s_Mem->executable = mmap(NULL, s_Mem->size, 7, 0x1000 | 0x08000, -1, 0);
+  if (s_Mem->executable == MAP_FAILED) {
+    std::free(s_Mem);
+    return -1;
+  }
+
+  s_Mem->writable = s_Mem->executable;
+  if (s_Mem->writable == MAP_FAILED) {
+    std::free(s_Mem);
+    return -1;
+  }
+  *p_Memory = s_Mem;
+
+  return 0;
+}
+
+int Utility::memoryProtectedDestroy(MemoryProtected *p_Memory) {
+  if (p_Memory == NULL) {
+    return -1;
+  }
+
+  int s_Ret = 0;
+
+  s_Ret |= munmap(p_Memory->writable, p_Memory->size);
+  s_Ret |= munmap(p_Memory->executable, p_Memory->size);
+  std::free(p_Memory);
+
+  return s_Ret;
+}
+
+int Utility::memoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void **p_Address) {
+  if (p_Memory == NULL || p_Address == NULL) {
+    return -1;
+  }
+
+  *p_Address = p_Memory->writable;
+
+  return 0;
+}
+
+int Utility::memoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void **p_Address) {
+  if (p_Memory == NULL || p_Address == NULL) {
+    return -1;
+  }
+
+  *p_Address = p_Memory->executable;
+
+  return 0;
+}
+
+int Utility::memoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size) {
+  if (p_Memory == NULL || p_Size == NULL) {
+    return -1;
+  }
+
+  *p_Size = p_Memory->size;
+
+  return 0;
+}
+
+void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
+  Application *s_App = p_App;
+
+  if (!s_App) {
+    logKernel(LL_Debug, "%s", "Invalid application object");
+    return;
+  }
+
+  int s_PayloadFileDescriptor = open(p_Path.c_str(), O_RDONLY);
+  if (s_PayloadFileDescriptor < 0) {
+    notifi(NULL, s_App->Lang->Get("errorShellcodeOpen").c_str(), p_Path.c_str());
+    return;
+  }
+  size_t s_Filesize = lseek(s_PayloadFileDescriptor, 0, SEEK_END);
+  lseek(s_PayloadFileDescriptor, 0, SEEK_SET);
+
+  g_Shellcode = (MemoryProtected *)std::calloc(sizeof(char), sizeof(MemoryProtected));
+  if (g_Shellcode == NULL) {
+    close(s_PayloadFileDescriptor);
+    notifi(NULL, s_App->Lang->Get("errorSendPayloadBuffer").c_str(), p_Path.c_str());
+
+    return;
+  }
+  if (memoryProtectedCreate(&g_Shellcode, 0x100000) != 0) {
+    close(s_PayloadFileDescriptor);
+    std::free(g_Shellcode);
+    notifi(NULL, s_App->Lang->Get("errorShellcodeMprotect").c_str(), p_Path.c_str());
+
+    return;
+  }
+
+  void *s_Writable;
+  void *s_Executable;
+
+  memoryProtectedGetWritableAddress(g_Shellcode, &s_Writable);
+  logKernel(LL_Debug, "memoryProtectedGetWritableAddress writable=%p", s_Writable);
+
+  memoryProtectedGetExecutableAddress(g_Shellcode, &s_Executable);
+  logKernel(LL_Debug, "memoryProtectedGetExecutableAddress executable=%p", s_Executable);
+
+  unsigned char *s_Buffer = (unsigned char *)std::calloc(sizeof(char), s_Filesize);
+  if (s_Buffer == NULL) {
+    close(s_PayloadFileDescriptor);
+    std::free(g_Shellcode);
+    notifi(NULL, s_App->Lang->Get("errorSendPayloadBuffer").c_str(), p_Path.c_str());
+
+    return;
+  }
+
+  ssize_t s_Ret = read(s_PayloadFileDescriptor, s_Buffer, s_Filesize);
+  close(s_PayloadFileDescriptor);
+
+  if (s_Ret < 0 || s_Ret != s_Filesize) { // Checks for negative first because s_ret is signed
+    std::free(g_Shellcode);
+    std::free(s_Buffer);
+    notifi(NULL, s_App->Lang->Get("errorSendPayloadRead").c_str(), p_Path.c_str());
+
+    return;
+  }
+
+  std::memcpy(s_Writable, s_Buffer, s_Filesize);
+  std::free(s_Buffer);
+
+  pthread_t s_Loader;
+  pthread_create(&s_Loader, NULL, (void *(*)(void *))s_Executable, NULL);
+  // pthread_join(s_Loader, NULL);
+
+  logKernel(LL_Debug, "%s", "Exiting LaunchShellcode()");
 }
 
 void Utility::SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath) {
@@ -86,92 +303,6 @@ void Utility::SendPayload(Application *p_App, const std::string p_IpAddress, uin
 
   close(s_SocketFileDescriptor);
   std::free(s_PayloadBuffer);
-}
-
-void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
-  if (fork() == 0) {
-    Application *s_App = p_App;
-
-    if (!s_App) {
-      logKernel(LL_Debug, "%s", "Invalid application object");
-      return;
-    }
-
-    int s_PayloadFileDescriptor = open(p_Path.c_str(), O_RDONLY);
-    if (s_PayloadFileDescriptor < 0) {
-      notifi(NULL, s_App->Lang->Get("errorShellcodeOpen").c_str(), p_Path.c_str());
-      return;
-    }
-    size_t s_Filesize = lseek(s_PayloadFileDescriptor, 0, SEEK_END);
-    lseek(s_PayloadFileDescriptor, 0, SEEK_SET);
-
-    void *s_Addr = NULL;
-    // int sceKernelMmap(void *addr, size_t len, int prot, int flags, int fd, off_t offset, void **res);
-    int s_Ret = sceKernelMmap(NULL, s_Filesize, PROT_READ, MAP_SHARED, s_PayloadFileDescriptor, 0, &s_Addr);
-    close(s_PayloadFileDescriptor); // POSIX says this isn't needed anymore, ctrl + f "extra reference": https://pubs.opengroup.org/onlinepubs/7908799/xsh/mmap.html
-    if (s_Ret < 0) {
-      notifi(NULL, std::string(s_App->Lang->Get("errorShellcodeMmap") + std::string("\n") + s_App->Lang->Get("errorHexOutput")).c_str(), s_Ret);
-      return;
-    }
-
-    logKernel(LL_Debug, "mmap addr: %p", s_Addr);
-    logKernelHexdump(LL_Debug, s_Addr, 0x20);                                     // Appears correct in logs
-    logFileBindump(LL_Debug, "/data/payload-guest-last.bin", s_Addr, s_Filesize); // Dumped file is identical to mmap'd file
-
-    s_Ret = sceKernelMprotect(s_Addr, s_Filesize, PROT_EXEC);
-    if (s_Ret < 0) {
-      notifi(NULL, std::string(s_App->Lang->Get("errorShellcodeMprotect") + std::string("\n") + s_App->Lang->Get("errorHexOutput")).c_str(), s_Ret);
-      return;
-    }
-
-    logKernel(LL_Debug, "Executing payload");
-
-    // TODO: These crash now with `real` payloads
-
-    // pthread_t s_Loader;
-    // pthread_create(&s_Loader, NULL, (void *(*)(void *))s_Addr, NULL);
-    // pthread_join(s_Loader, NULL);
-
-    // or
-
-    ((void (*)(void))s_Addr)();
-
-    logKernel(LL_Debug, "Executed payload");
-
-    if (sceKernelMunmap(s_Addr, s_Filesize) < 0) {
-      s_App->ShowFatalReason(s_App->Lang->Get("errorShellcodeMunmap"));
-    }
-
-    std::exit(0);
-  }
-}
-
-// https://stackoverflow.com/a/34221488
-void Utility::SanitizeJsonString(std::string &p_Input) {
-  // Add backslashes.
-  for (auto i = p_Input.begin();;) {
-    auto const s_Position = find_if(i, p_Input.end(), [](char const c) { return '\\' == c || '\'' == c || '"' == c; });
-    if (s_Position == p_Input.end()) {
-      break;
-    }
-    i = next(p_Input.insert(s_Position, '\\'), 2);
-  }
-
-  p_Input.erase(remove_if(p_Input.begin(), p_Input.end(), [](char const c) { return '\a' == c || '\b' == c || '\f' == c || '\n' == c || '\r' == c || '\t' == c || '\v' == c || '\?' == c || '\0' == c || '\x1A' == c; }), p_Input.end());
-}
-
-// https://github.com/Mish7913/cpp-library/blob/master/str/str.cpp
-std::wstring Utility::StrToWstr(const std::string &p_Input) {
-  std::string s_CurrentLocale = std::setlocale(LC_ALL, "");
-  const char *s_CharSource = p_Input.c_str();
-  size_t s_CharDestinationSize = std::mbstowcs(NULL, s_CharSource, 0) + 1;
-  wchar_t *s_CharDestination = new wchar_t[s_CharDestinationSize];
-  std::wmemset(s_CharDestination, 0, s_CharDestinationSize);
-  std::mbstowcs(s_CharDestination, s_CharSource, s_CharDestinationSize);
-  std::wstring s_Result = s_CharDestination;
-  delete[] s_CharDestination;
-  std::setlocale(LC_ALL, s_CurrentLocale.c_str());
-  return s_Result;
 }
 
 // // Remplace a string inside a chain

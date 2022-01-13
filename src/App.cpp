@@ -8,47 +8,14 @@
 #include "View.h"
 
 #include "libLog.h"
-#include "libjbc.h"
 
 #include <orbis/Sysmodule.h>
 
 #include <cstdio>
 #include <string>
 
-#define SCE_SYSMDOULE_LIBIME 0x0095
-#define SCE_SYSMODULE_IME_DIALOG 0x0096
-
-bool Application::IsJailbroken() {
-  FILE *s_FilePointer = std::fopen("/user/.jailbreak", "w");
-  if (!s_FilePointer) {
-    return false;
-  }
-
-  std::fclose(s_FilePointer);
-  std::remove("/user/.jailbreak");
-  return true;
-}
-
-// Jailbreaks creds
-void Application::Jailbreak() {
-  if (IsJailbroken()) {
-    return;
-  }
-
-  jbc_get_cred(&m_Cred);
-  m_RootCreds = m_Cred;
-  jbc_jailbreak_cred(&m_RootCreds);
-  jbc_set_cred(&m_RootCreds);
-}
-
-// Restores original creds
-void Application::Unjailbreak() {
-  if (!IsJailbroken()) {
-    return;
-  }
-
-  jbc_set_cred(&m_Cred);
-}
+// #define SCE_SYSMDOULE_LIBIME 0x0095
+// #define SCE_SYSMODULE_IME_DIALOG 0x0096
 
 Application::Application() {
   m_IsRunning = false;
@@ -64,28 +31,19 @@ Application::Application() {
   Res = new Resource(this, Lang->GetTypefacePaths());
 
   // Load some needed module
-  sceSysmoduleLoadModule(SCE_SYSMDOULE_LIBIME);
-  sceSysmoduleLoadModule(SCE_SYSMODULE_IME_DIALOG);
+  // sceSysmoduleLoadModule(SCE_SYSMDOULE_LIBIME);
+  // sceSysmoduleLoadModule(SCE_SYSMODULE_IME_DIALOG);
 
-  Jailbreak();
-  if (IsJailbroken()) {
-    // Setup the default view
-    logKernel(LL_Debug, "%s", "Initialize the Main View...");
+  // Setup the default view
+  logKernel(LL_Debug, "%s", "Initialize the Main View...");
 
-    PayloadsView *s_MainView = new PayloadsView(this);
-    m_CurrentView = s_MainView;
-  } else {
-    ShowFatalReason(Lang->Get("errorJailbreak"));
-  }
+  PayloadsView *s_MainView = new PayloadsView(this);
+  m_CurrentView = s_MainView;
 }
 
 Application::~Application() {
   // Cleanup
   logKernel(LL_Debug, "%s", "Cleanup Application...");
-
-  if (IsJailbroken()) {
-    Unjailbreak();
-  }
 
   delete Lang;
   delete Res;
@@ -104,10 +62,6 @@ void Application::Update() {
 }
 
 void Application::ShowFatalReason(const std::string &p_Reason) {
-  if (IsJailbroken()) {
-    Unjailbreak();
-  }
-
   while (1) {
     Graph->WaitFlip();
 

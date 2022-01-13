@@ -1,8 +1,9 @@
 # Package metadata
 TITLE         := Payload Guest
-VERSION       := 0.96
+VERSION       := 0.97
 TITLE_ID      := AZIF00003
 CONTENT_ID    := IV0000-AZIF00003_00-PAYLOADGUEST0000
+AUTHINFO      := 000000000000000000000000001C004000FF000000000080000000000000000000000000000000000000008000400040000000000000008000000000000000080040FFFF000000F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 # Libraries linked into the ELF
 LIBS          := -lc -lkernel -lc++ -lSceVideoOut -lSceGnmDriver -lSceSysmodule -lSceFreeType -lSceHttp -lScePad -lSceUserService -lSceSystemService -lSceNet -lSceHttp -lSceSsl -lSceBgft -lSceAppInstUtil -lSceImeDialog
@@ -39,6 +40,7 @@ CFILES        := $(wildcard $(SDIR)/*.c)
 CFILES        := $(filter-out $(SDIR)/ChainLauncher.c,$(CFILES))
 CPPFILES      := $(wildcard $(SDIR)/*.cpp)
 OBJS          := $(patsubst $(SDIR)/%.c, $(ODIR)/%.o, $(CFILES)) $(patsubst $(SDIR)/%.cpp, $(ODIR)/%.o, $(CPPFILES))
+OBJS          := $(filter-out $(ODIR)/eboot.o,$(OBJS))
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -54,7 +56,9 @@ ifeq ($(UNAME_S),Darwin)
 		CDIR      := macos
 endif
 
-.PHONY: all
+.PHONY: all pkg.gp4 sce_sys/param.sfo eboot.bin guest.elf clean
+.DEFAULT := all
+
 all: $(CONTENT_ID).pkg
 
 $(CONTENT_ID).pkg: pkg.gp4
@@ -82,7 +86,7 @@ eboot.bin: guest.elf
 	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/eboot.elf -out=$(ODIR)/eboot.oelf --eboot "eboot.bin" --paid 0x3800000000000011
 
 guest.elf: $(ODIR) $(OBJS)
-	$(LD) $(ODIR)/*.o -o $(ODIR)/guest.elf $(LDFLAGS)
+	$(LD) $(OBJS) -o $(ODIR)/guest.elf $(LDFLAGS)
 	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/guest.elf -out=$(ODIR)/guest.oelf --eboot "guest.elf" --paid 0x3800000000000011
 
 $(ODIR)/%.o: $(SDIR)/%.c
@@ -94,6 +98,5 @@ $(ODIR)/%.o: $(SDIR)/%.cpp
 $(ODIR):
 	@mkdir -p $@
 
-.PHONY: clean
 clean:
 	rm -rf *.pkg pkg.gp4 sce_sys/param.sfo eboot.bin guest.elf $(ODIR)

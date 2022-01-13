@@ -35,15 +35,11 @@ Please take notice of the [LICENSE](https://github.com/Al-Azif/ps4-payload-guest
 
 This is a to do list of know issues/planned features. If all of these manage to get done it's essentially 100% complete and 100% overengineeered for what it was supposed to be.
 
-- [ ] Running `make` twice without `make clean` between causes a `error: duplicate symbol: main`
-- [ ] Run payload in separate process vs just a separate thread (To avoid bad payloads crashing the app)
-  - Check PayloadsView.cpp:L311 for switching how the payload is currently being loaded
-  - [ ] Is it possible to notifi() on error signal/coredump within fork'd process?
+- [ ] Get PNG transparency working correctly
+- [ ] Use `error_notifi.png` for error notifications (?)
+
 - [ ] Swap to SDL2 for rendering (May fix issues below)
 - [ ] Directly use system typefaces, font library, PNG library, etc (May fix issues below)
-- [ ] Use `error_notifi.png` for error notifications
-- [ ] "Fix" create-gp4 in the SDK so directories aren't static (Then organize assets into subfolders)
-- [ ] Get PNG transparency working correctly
 - [ ] Arabic is rendered backwards
   - [ ] Arabic likely needs to use harfbuzz to properly render ligatures
 - [ ] Payload title centering is a off when value is used from the fallback typeface (Arabic/Thai)

@@ -3,11 +3,9 @@
 
 #include "View.h"
 
-#include "libjbc.h"
-
 #include <string>
 
-#define APP_VER 0.96
+#define APP_VER 0.97
 
 class Language;
 class Controller;
@@ -33,13 +31,6 @@ private:
   bool m_IsRunning;
   View *m_CurrentView;
   int m_FlipArgs;
-
-  jbc_cred m_Cred;
-  jbc_cred m_RootCreds;
-
-  bool IsJailbroken();
-  void Jailbreak();
-  void Unjailbreak();
 };
 
 #endif

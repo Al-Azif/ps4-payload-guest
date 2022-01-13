@@ -5,18 +5,42 @@
 
 // #include <orbis/_types/ime_dialog.h>
 
+#include "libjbc.h"
+
 #include <cstddef>
 #include <memory>
 #include <string>
+
+typedef struct {
+  void *writable;
+  void *executable;
+  size_t size;
+} MemoryProtected;
+
+extern MemoryProtected *g_Shellcode;
+
+extern jbc_cred m_Cred;
+extern jbc_cred m_RootCreds;
 
 class Application;
 
 class Utility {
 public:
   static std::string LastChars(std::string p_Input, int p_Num);
-  static void LaunchShellcode(Application *p_App, const std::string &p_Path);
   static void SanitizeJsonString(std::string &p_Input);
   static std::wstring StrToWstr(const std::string &p_Input);
+
+  static bool IsJailbroken();
+  static void Jailbreak();
+  static void Unjailbreak();
+
+  static int memoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size);
+  static int memoryProtectedDestroy(MemoryProtected *p_Memory);
+  static int memoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void **p_Address);
+  static int memoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void **p_Address);
+  static int memoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size);
+
+  static void LaunchShellcode(Application *p_App, const std::string &p_Path);
   static void SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath);
 
   template <typename I>

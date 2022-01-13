@@ -307,9 +307,9 @@ int PayloadsView::Update() {
           if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
             logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
             m_PayloadTimer = sceKernelGetProcessTime();
-            // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());         // Pop notification
-            // Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location);             // Launch here
-            Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location); // Send to GoldHEN's loader
+            // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());           // Pop notification
+            Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location);                  // Launch here
+            //Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location); // Send to GoldHEN's loader
           } else {
             logKernel(LL_Debug, "Skip loading due to timer: %s", m_Payloads[m_PayloadSelected].location.c_str());
           }
