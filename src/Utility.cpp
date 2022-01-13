@@ -1,3 +1,8 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+// License: GPL-3.0
+
 #include "Utility.h"
 
 #include "Language.h"
@@ -10,6 +15,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <cstdlib>
 #include <string>
 
@@ -53,6 +59,17 @@ std::wstring Utility::StrToWstr(const std::string &p_Input) {
   delete[] s_CharDestination;
   std::setlocale(LC_ALL, s_CurrentLocale.c_str());
   return s_Result;
+}
+
+bool Utility::IsJailbroken() {
+  FILE *s_FilePointer = std::fopen("/user/.jailbreak", "w");
+  if (!s_FilePointer) {
+    return false;
+  }
+
+  std::fclose(s_FilePointer);
+  std::remove("/user/.jailbreak");
+  return true;
 }
 
 int Utility::MemoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size) {

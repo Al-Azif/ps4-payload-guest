@@ -1,3 +1,8 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+// License: GPL-3.0
+
 #ifndef CREDIT_VIEW_H
 #define CREDIT_VIEW_H
 
@@ -11,6 +16,7 @@ class CreditView : public View {
 public:
   CreditView(Application *p_App);
   virtual ~CreditView();
+
   int Update(void);
   int Render(void);
 

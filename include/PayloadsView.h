@@ -1,3 +1,8 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+// License: GPL-3.0
+
 #ifndef SOURCES_VIEW_H
 #define SOURCES_VIEW_H
 
@@ -26,6 +31,7 @@ class PayloadsView : public View {
 public:
   PayloadsView(Application *p_App);
   virtual ~PayloadsView();
+
   int Update(void);
   int Render(void);
 
@@ -60,9 +66,12 @@ private:
     Utility::StrSprintf(m_ErrorMessage, p_Format, p_Args...);
     m_OnError = true;
   }
+
   std::vector<Payload> ParseJson(const std::string &p_Path);
   std::vector<Payload> ParseFiles(const std::string &p_Path);
+
   void ParseDirectory(const std::string &p_Path);
+
   void RefreshPayloadList();
   void CleanupPayloadList();
 };

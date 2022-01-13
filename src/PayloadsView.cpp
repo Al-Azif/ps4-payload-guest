@@ -1,3 +1,8 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+// License: GPL-3.0
+
 #include "PayloadsView.h"
 
 #include "App.h"
@@ -190,7 +195,11 @@ void PayloadsView::RefreshPayloadList() {
   // Check USB paths
   for (int i = 0; i < 8; i++) {
     std::string s_UsbPath;
-    Utility::StrSprintf(s_UsbPath, "/mnt/usb%i/payloads", i);
+    if (Utility::IsJailbroken()) {
+      Utility::StrSprintf(s_UsbPath, "/mnt/usb%i/payloads", i);
+    } else {
+      Utility::StrSprintf(s_UsbPath, "/usb%i/payloads", i);
+    }
     ParseDirectory(s_UsbPath);
   }
 
@@ -305,11 +314,14 @@ int PayloadsView::Update() {
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CROSS)) {
         if (m_Payloads.size() > 0 && m_PayloadSelected >= 0) {
           if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
+            if (Utility::IsJailbroken() && m_Payloads[m_PayloadSelected].location.rfind("/usb", 0) == 0) {
+              m_Payloads[m_PayloadSelected].location.insert(0, "/mnt");
+            }
             logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
+            // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str()); // Pop notification
+            Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location); // Launch here
+            // Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location); // Send to GoldHEN's loader
             m_PayloadTimer = sceKernelGetProcessTime();
-            // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());           // Pop notification
-            Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location);                  // Launch here
-            //Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location); // Send to GoldHEN's loader
           } else {
             logKernel(LL_Debug, "Skip loading due to timer: %s", m_Payloads[m_PayloadSelected].location.c_str());
           }

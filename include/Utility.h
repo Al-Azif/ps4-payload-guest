@@ -1,3 +1,8 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+// License: GPL-3.0
+
 #ifndef UTILITY_H
 #define UTILITY_H
 
@@ -24,6 +29,8 @@ public:
   static std::string LastChars(std::string p_Input, int p_Num);
   static void SanitizeJsonString(std::string &p_Input);
   static std::wstring StrToWstr(const std::string &p_Input);
+
+  static bool IsJailbroken();
 
   static int MemoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size);
   static int MemoryProtectedDestroy(MemoryProtected *p_Memory);

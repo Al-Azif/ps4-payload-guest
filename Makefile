@@ -6,7 +6,7 @@ CONTENT_ID    := IV0000-AZIF00003_00-PAYLOADGUEST0000
 AUTHINFO      := 000000000000000000000000001C004000FF000000000080000000000000000000000000000000000000008000400040000000000000008000000000000000080040FFFF000000F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 # Libraries linked into the ELF
-LIBS          := -lc -lkernel -lc++ -lSceVideoOut -lSceGnmDriver -lSceSysmodule -lSceFreeType -lScePad -lSceUserService -lSceSystemService
+LIBS          := -lc -lkernel -lc++ -lSceVideoOut -lSceGnmDriver -lSceSysmodule -lSceFreeType -lScePad -lSceUserService -lSceSystemService -lSceLibcInternal
 LIBS					+= -Llibs -lLog
 
 # Directorys to include
@@ -81,13 +81,13 @@ sce_sys/param.sfo: Makefile
 	$(TOOLCHAIN)/bin/$(CDIR)/PkgTool.Core sfo_setentry $@ VERSION --type Utf8 --maxsize 8 --value '$(VERSION)'
 
 eboot.bin: guest.elf
-	$(CC) -cc1 -triple x86_64-pc-freebsd-elf -munwind-tables -fuse-init-array -emit-obj -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include -std=c99 -O3 -Wall -Wextra -Wpedantic -Werror -o $(ODIR)/eboot.o $(SDIR)/ChainLauncher.c
-	$(LD) $(ODIR)/eboot.o -o $(ODIR)/eboot.elf -m elf_x86_64 -pie --script $(TOOLCHAIN)/link.x --eh-frame-hdr -L$(TOOLCHAIN)/lib -lc -lkernel -lSceSystemService $(TOOLCHAIN)/lib/crt1.o
-	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/eboot.elf -out=$(ODIR)/eboot.oelf --eboot "eboot.bin" --paid 0x3800000000000011
+	$(CC) --target=x86_64-pc-freebsd12-elf -fPIC -funwind-tables -c -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include $(INCLUDES) -std=c99 -O3 -D_DEFAULT_SOURCE $(ERRORFLAGS) -o $(ODIR)/eboot.o $(SDIR)/ChainLauncher.c
+	$(LD) $(ODIR)/eboot.o -o $(ODIR)/eboot.elf -m elf_x86_64 -pie --script $(TOOLCHAIN)/link.x --eh-frame-hdr -L$(TOOLCHAIN)/lib -lc -lkernel -lSceSysmodule -lSceSystemService -Llibs -lLog $(TOOLCHAIN)/lib/crt1.o
+	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/eboot.elf -out=$(ODIR)/eboot.oelf --eboot "eboot.bin" --authinfo=$(AUTHINFO)
 
 guest.elf: $(ODIR) $(OBJS)
 	$(LD) $(OBJS) -o $(ODIR)/guest.elf $(LDFLAGS)
-	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/guest.elf -out=$(ODIR)/guest.oelf --eboot "guest.elf" --paid 0x3800000000000011
+	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(ODIR)/guest.elf -out=$(ODIR)/guest.oelf --eboot "guest.elf" --authinfo=$(AUTHINFO)
 
 $(ODIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) -o $@ $<
