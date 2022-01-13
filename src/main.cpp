@@ -18,13 +18,13 @@ void signalHandler(int p_SignalNum) {
   switch (p_SignalNum) {
   case 11:
     logKernel(LL_Debug, "%s", "SIGSEGV");
+    break;
   default:
     break;
   }
 
   if (g_Shellcode != NULL) {
-    Utility::memoryProtectedDestroy(g_Shellcode);
-    std::free(g_Shellcode);
+    Utility::MemoryProtectedDestroy(g_Shellcode);
     notifi(NULL, "The Payload you attempted to load is corrupted or has crashed\nPlease pick a different one");
   }
 

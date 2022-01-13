@@ -55,7 +55,7 @@ std::wstring Utility::StrToWstr(const std::string &p_Input) {
   return s_Result;
 }
 
-int Utility::memoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size) {
+int Utility::MemoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size) {
   MemoryProtected *s_Mem;
   long s_PageSize = sysconf(_SC_PAGESIZE);
 
@@ -91,7 +91,7 @@ int Utility::memoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size) {
   return 0;
 }
 
-int Utility::memoryProtectedDestroy(MemoryProtected *p_Memory) {
+int Utility::MemoryProtectedDestroy(MemoryProtected *p_Memory) {
   if (p_Memory == NULL) {
     return -1;
   }
@@ -105,7 +105,7 @@ int Utility::memoryProtectedDestroy(MemoryProtected *p_Memory) {
   return s_Ret;
 }
 
-int Utility::memoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void **p_Address) {
+int Utility::MemoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void **p_Address) {
   if (p_Memory == NULL || p_Address == NULL) {
     return -1;
   }
@@ -115,7 +115,7 @@ int Utility::memoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void *
   return 0;
 }
 
-int Utility::memoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void **p_Address) {
+int Utility::MemoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void **p_Address) {
   if (p_Memory == NULL || p_Address == NULL) {
     return -1;
   }
@@ -125,7 +125,7 @@ int Utility::memoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void
   return 0;
 }
 
-int Utility::memoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size) {
+int Utility::MemoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size) {
   if (p_Memory == NULL || p_Size == NULL) {
     return -1;
   }
@@ -158,7 +158,7 @@ void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
 
     return;
   }
-  if (memoryProtectedCreate(&g_Shellcode, 0x100000) != 0) {
+  if (MemoryProtectedCreate(&g_Shellcode, 0x100000) != 0) {
     close(s_PayloadFileDescriptor);
     std::free(g_Shellcode);
     notifi(NULL, s_App->Lang->Get("errorShellcodeMprotect").c_str(), p_Path.c_str());
@@ -169,11 +169,11 @@ void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
   void *s_Writable;
   void *s_Executable;
 
-  memoryProtectedGetWritableAddress(g_Shellcode, &s_Writable);
-  logKernel(LL_Debug, "memoryProtectedGetWritableAddress writable=%p", s_Writable);
+  MemoryProtectedGetWritableAddress(g_Shellcode, &s_Writable);
+  logKernel(LL_Debug, "MemoryProtectedGetWritableAddress writable=%p", s_Writable);
 
-  memoryProtectedGetExecutableAddress(g_Shellcode, &s_Executable);
-  logKernel(LL_Debug, "memoryProtectedGetExecutableAddress executable=%p", s_Executable);
+  MemoryProtectedGetExecutableAddress(g_Shellcode, &s_Executable);
+  logKernel(LL_Debug, "MemoryProtectedGetExecutableAddress executable=%p", s_Executable);
 
   unsigned char *s_Buffer = (unsigned char *)std::calloc(sizeof(char), s_Filesize);
   if (s_Buffer == NULL) {

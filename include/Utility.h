@@ -25,11 +25,11 @@ public:
   static void SanitizeJsonString(std::string &p_Input);
   static std::wstring StrToWstr(const std::string &p_Input);
 
-  static int memoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size);
-  static int memoryProtectedDestroy(MemoryProtected *p_Memory);
-  static int memoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void **p_Address);
-  static int memoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void **p_Address);
-  static int memoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size);
+  static int MemoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size);
+  static int MemoryProtectedDestroy(MemoryProtected *p_Memory);
+  static int MemoryProtectedGetWritableAddress(MemoryProtected *p_Memory, void **p_Address);
+  static int MemoryProtectedGetExecutableAddress(MemoryProtected *p_Memory, void **p_Address);
+  static int MemoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size);
 
   static void LaunchShellcode(Application *p_App, const std::string &p_Path);
   static void SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath);
