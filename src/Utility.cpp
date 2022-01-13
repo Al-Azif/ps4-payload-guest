@@ -3,7 +3,6 @@
 #include "Language.h"
 
 #include "libLog.h"
-#include "libjbc.h"
 #include "notifi.h"
 
 // #include <orbis/ImeDialog.h>
@@ -22,9 +21,6 @@
 #include <unistd.h>
 
 MemoryProtected *g_Shellcode;
-
-jbc_cred m_Cred;
-jbc_cred m_RootCreds;
 
 std::string Utility::LastChars(std::string p_Input, int p_Num) {
   int s_InputSize = p_Input.size();
@@ -57,38 +53,6 @@ std::wstring Utility::StrToWstr(const std::string &p_Input) {
   delete[] s_CharDestination;
   std::setlocale(LC_ALL, s_CurrentLocale.c_str());
   return s_Result;
-}
-
-bool Utility::IsJailbroken() {
-  FILE *s_FilePointer = std::fopen("/user/.jailbreak", "w");
-  if (!s_FilePointer) {
-    return false;
-  }
-
-  std::fclose(s_FilePointer);
-  std::remove("/user/.jailbreak");
-  return true;
-}
-
-// Jailbreaks creds
-void Utility::Jailbreak() {
-  if (IsJailbroken()) {
-    return;
-  }
-
-  jbc_get_cred(&m_Cred);
-  m_RootCreds = m_Cred;
-  jbc_jailbreak_cred(&m_RootCreds);
-  jbc_set_cred(&m_RootCreds);
-}
-
-// Restores original creds
-void Utility::Unjailbreak() {
-  if (!IsJailbroken()) {
-    return;
-  }
-
-  jbc_set_cred(&m_Cred);
 }
 
 int Utility::memoryProtectedCreate(MemoryProtected **p_Memory, size_t p_Size) {

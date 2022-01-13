@@ -6,8 +6,8 @@ CONTENT_ID    := IV0000-AZIF00003_00-PAYLOADGUEST0000
 AUTHINFO      := 000000000000000000000000001C004000FF000000000080000000000000000000000000000000000000008000400040000000000000008000000000000000080040FFFF000000F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 # Libraries linked into the ELF
-LIBS          := -lc -lkernel -lc++ -lSceVideoOut -lSceGnmDriver -lSceSysmodule -lSceFreeType -lSceHttp -lScePad -lSceUserService -lSceSystemService -lSceNet -lSceHttp -lSceSsl -lSceBgft -lSceAppInstUtil -lSceImeDialog
-LIBS					+= -Llibs -lLog -ljbc
+LIBS          := -lc -lkernel -lc++ -lSceVideoOut -lSceGnmDriver -lSceSysmodule -lSceFreeType -lScePad -lSceUserService -lSceSystemService
+LIBS					+= -Llibs -lLog
 
 # Directorys to include
 INCLUDES      := -Iinclude -Iexternal
