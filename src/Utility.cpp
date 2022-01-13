@@ -187,7 +187,8 @@ void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
   ssize_t s_Ret = read(s_PayloadFileDescriptor, s_Buffer, s_Filesize);
   close(s_PayloadFileDescriptor);
 
-  if (s_Ret < 0 || s_Ret != s_Filesize) { // Checks for negative first because s_ret is signed
+  // Checks for negative first because s_ret is signed
+  if (s_Ret < 0 || (size_t)s_Ret != s_Filesize) {
     std::free(g_Shellcode);
     std::free(s_Buffer);
     notifi(NULL, s_App->Lang->Get("errorSendPayloadRead").c_str(), p_Path.c_str());
