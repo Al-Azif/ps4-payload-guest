@@ -16,8 +16,8 @@ INCLUDES      := -Iinclude -Iexternal
 #   ERRORFLAGS and OTHERFLAGS will be included in C and C++ flags
 #   OTHERCXXFLAGS will only be included in C++ flags
 ERRORFLAGS    := -Wall -Wextra -Wpedantic # -Werror
-OTHERFLAGS    := -std=c99 -O3 -D_DEFAULT_SOURCE
-OTHERCXXFLAGS := -std=c++14
+OTHERFLAGS    := -std=c17 -O3 -D_DEFAULT_SOURCE
+OTHERCXXFLAGS := -std=c++17
 
 # PKG Asset directories
 ASSETS        := $(shell find assets -type f -name '*.*')
