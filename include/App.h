@@ -6,9 +6,9 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "View.h"
-
 #include <string>
+
+#include "View.h"
 
 #define APP_VER 0.97
 

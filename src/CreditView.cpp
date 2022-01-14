@@ -5,6 +5,10 @@
 
 #include "CreditView.h"
 
+#include <string>
+
+#include "libLog.h"
+
 #include "App.h"
 #include "Controller.h"
 #include "Graphics.h"
@@ -12,10 +16,6 @@
 #include "PayloadsView.h"
 #include "Resource.h"
 #include "Utility.h"
-
-#include "libLog.h"
-
-#include <string>
 
 #define HEADER_SIZE 200
 #define FOOTER_SIZE 100

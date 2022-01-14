@@ -7,13 +7,14 @@
 
 #include "Controller.h"
 
-#include "libLog.h"
-
 #include <orbis/Pad.h>
 #include <orbis/UserService.h>
 #include <orbis/_types/user.h>
 
 #include <cstdio>
+
+#include "libLog.h"
+
 // Initialize the controller
 Controller::Controller() {
   // Initialize the Pad library

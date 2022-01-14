@@ -6,17 +6,17 @@
 #ifndef SOURCES_VIEW_H
 #define SOURCES_VIEW_H
 
-#include "App.h"
-#include "Graphics.h"
-#include "Utility.h"
-#include "View.h"
-
 #include <orbis/_types/pthread.h>
 
 #include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>
+
+#include "App.h"
+#include "Graphics.h"
+#include "Utility.h"
+#include "View.h"
 
 class Application;
 class PayloadsView;
@@ -72,8 +72,8 @@ private:
 
   void ParseDirectory(const std::string &p_Path);
 
-  void RefreshPayloadList();
-  void CleanupPayloadList();
+  void RefreshPayloadList(bool p_Reset);
+  void CleanupPayloadList(bool p_Reset);
 };
 
 #endif

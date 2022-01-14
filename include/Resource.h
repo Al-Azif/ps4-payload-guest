@@ -6,12 +6,12 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
-#include "App.h"
-#include "Graphics.h"
-
 #include <proto-include.h>
 
 #include <vector>
+
+#include "App.h"
+#include "Graphics.h"
 
 class Application;
 

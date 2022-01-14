@@ -5,19 +5,19 @@
 
 #include "App.h"
 
+#include <orbis/Sysmodule.h>
+
+#include <cstdio>
+#include <string>
+
+#include "libLog.h"
+
 #include "Controller.h"
 #include "Graphics.h"
 #include "Language.h"
 #include "PayloadsView.h"
 #include "Resource.h"
 #include "View.h"
-
-#include "libLog.h"
-
-#include <orbis/Sysmodule.h>
-
-#include <cstdio>
-#include <string>
 
 // #define SCE_SYSMDOULE_LIBIME 0x0095
 // #define SCE_SYSMODULE_IME_DIALOG 0x0096

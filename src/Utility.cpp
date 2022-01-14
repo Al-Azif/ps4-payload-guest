@@ -5,13 +5,14 @@
 
 #include "Utility.h"
 
-#include "Language.h"
-
-#include "libLog.h"
-#include "notifi.h"
-
+#include <arpa/inet.h>
+#include <fcntl.h>
+#include <netinet/in.h>
 // #include <orbis/ImeDialog.h>
 #include <orbis/libkernel.h>
+#include <sys/mman.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 #include <cstddef>
 #include <cstdint>
@@ -19,12 +20,10 @@
 #include <cstdlib>
 #include <string>
 
-#include <arpa/inet.h>
-#include <fcntl.h>
-#include <netinet/in.h>
-#include <sys/mman.h>
-#include <sys/socket.h>
-#include <unistd.h>
+#include "libLog.h"
+#include "notifi.h"
+
+#include "Language.h"
 
 MemoryProtected *g_Shellcode;
 

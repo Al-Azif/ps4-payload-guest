@@ -5,16 +5,16 @@
 
 #include "Language.h"
 
-#include "Utility.h"
-
-#include "libLog.h"
-#include "nlohmann_json.hpp"
-
 #include <orbis/SystemService.h>
 
 #include <cstdint>
 #include <string>
 #include <vector>
+
+#include "libLog.h"
+#include "nlohmann_json.hpp"
+
+#include "Utility.h"
 
 Language::Language() {
   m_Code = GetCode();

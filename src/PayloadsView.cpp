@@ -5,6 +5,17 @@
 
 #include "PayloadsView.h"
 
+#include <dirent.h>
+
+#include <cstddef>
+#include <cstdint>
+#include <cstdio>
+#include <string>
+#include <vector>
+
+#include "libLog.h"
+// #include "notifi.h"
+
 #include "App.h"
 #include "Controller.h"
 #include "CreditView.h"
@@ -13,17 +24,6 @@
 #include "Resource.h"
 #include "Utility.h"
 #include "nlohmann_json.hpp"
-
-#include "libLog.h"
-// #include "notifi.h"
-
-#include <dirent.h>
-
-#include <cstddef>
-#include <cstdint>
-#include <cstdio>
-#include <string>
-#include <vector>
 
 std::vector<Payload> PayloadsView::ParseJson(const std::string &p_Path) {
   std::vector<Payload> s_TempOutput;
@@ -182,12 +182,12 @@ void PayloadsView::ParseDirectory(const std::string &p_Path) {
   }
 }
 
-void PayloadsView::RefreshPayloadList() {
+void PayloadsView::RefreshPayloadList(bool p_Reset) {
   logKernel(LL_Debug, "%s", "GeneratePayloads is called!");
 
   scePthreadMutexLock(&m_PayloadsMtx);
 
-  CleanupPayloadList();
+  CleanupPayloadList(p_Reset);
 
   // Check internal path
   ParseDirectory("/data/payloads");
@@ -208,7 +208,7 @@ void PayloadsView::RefreshPayloadList() {
   scePthreadMutexUnlock(&m_PayloadsMtx);
 }
 
-void PayloadsView::CleanupPayloadList() {
+void PayloadsView::CleanupPayloadList(bool p_Reset) {
   logKernel(LL_Debug, "%s", "Cleanup payload list...");
 
   for (size_t i = 0; i < m_Payloads.size(); i++) {
@@ -217,7 +217,9 @@ void PayloadsView::CleanupPayloadList() {
     }
   }
 
-  m_PayloadSelected = 0;
+  if (p_Reset) {
+    m_PayloadSelected = 0;
+  }
   m_Payloads.clear();
 }
 
@@ -245,7 +247,7 @@ PayloadsView::PayloadsView(Application *p_App) {
   m_ActiveColor = {0xFF, 0xFF, 0xFF, 0xDD};
 
   scePthreadMutexInit(&m_PayloadsMtx, NULL, "PayloadGuestMTX");
-  RefreshPayloadList();
+  RefreshPayloadList(true);
 
   logKernel(LL_Debug, "%s", "PayloadsView: End of constructor");
 }
@@ -253,7 +255,7 @@ PayloadsView::PayloadsView(Application *p_App) {
 PayloadsView::~PayloadsView() {
   // Cleanup memory
   scePthreadMutexLock(&m_PayloadsMtx);
-  CleanupPayloadList();
+  CleanupPayloadList(true);
   scePthreadMutexUnlock(&m_PayloadsMtx);
 
   // Destroy mutex
@@ -307,20 +309,18 @@ int PayloadsView::Update() {
       }
 
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_SQUARE)) {
-        RefreshPayloadList();
+        RefreshPayloadList(true);
         return 0;
       }
 
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CROSS)) {
         if (m_Payloads.size() > 0 && m_PayloadSelected >= 0) {
           if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
-            if (Utility::IsJailbroken() && m_Payloads[m_PayloadSelected].location.rfind("/usb", 0) == 0) {
-              m_Payloads[m_PayloadSelected].location.insert(0, "/mnt");
-            }
             logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
             // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str()); // Pop notification
             Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location); // Launch here
             // Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location); // Send to GoldHEN's loader
+            RefreshPayloadList(false);
             m_PayloadTimer = sceKernelGetProcessTime();
           } else {
             logKernel(LL_Debug, "Skip loading due to timer: %s", m_Payloads[m_PayloadSelected].location.c_str());

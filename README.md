@@ -36,7 +36,10 @@ Please take notice of the [LICENSE](https://github.com/Al-Azif/ps4-payload-guest
 This is a to do list of know issues/planned features. If all of these manage to get done it's essentially 100% complete and 100% overengineeered for what it was supposed to be.
 
 - [ ] Get PNG transparency working correctly
+- [ ] Use new create-gp4 to move assets into proper directories
+- [ ] Setup proper logging levels/statements (Everything is currently just `LL_Debug`)
 - [ ] Use `error_notifi.png` for error notifications (?)
+- [ ] 1.00 Release
 
 - [ ] Swap to SDL2 for rendering (May fix issues below)
 - [ ] Directly use system typefaces, font library, PNG library, etc (May fix issues below)
@@ -44,7 +47,6 @@ This is a to do list of know issues/planned features. If all of these manage to 
   - [ ] Arabic likely needs to use harfbuzz to properly render ligatures
 - [ ] Payload title centering is a off when value is used from the fallback typeface (Arabic/Thai)
 - [ ] Fix newline height is based on font "width" right now, so it can be different than what's expected (Arabic/Thai)
-- [ ] Setup proper logging levels/statements (Everything is currently just `LL_Debug`)
 
 - [ ] New options menu (Options button, save to application save file)
   - [ ] Set log level to display in logging

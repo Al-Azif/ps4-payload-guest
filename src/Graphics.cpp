@@ -5,15 +5,10 @@
 
 #include "Graphics.h"
 
-#include "Utility.h"
-
-#include "libLog.h"
-
 #include <orbis/GnmDriver.h>
 #include <orbis/Sysmodule.h>
 #include <orbis/VideoOut.h>
 #include <orbis/libkernel.h>
-
 #include <proto-include.h>
 
 #define STBI_ASSERT(x)
@@ -24,6 +19,10 @@
 #include <cstdio>
 #include <string>
 #include <vector>
+
+#include "libLog.h"
+
+#include "Utility.h"
 
 //
 /* alpha-blending, a simple vectorized version */

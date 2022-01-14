@@ -6,13 +6,13 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include "App.h"
-
 // #include <orbis/_types/ime_dialog.h>
 
 #include <cstddef>
 #include <memory>
 #include <string>
+
+#include "App.h"
 
 typedef struct {
   void *writable;

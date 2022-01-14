@@ -8,7 +8,6 @@
 
 #include <orbis/_types/kernel.h>
 #include <orbis/_types/video.h>
-
 #include <proto-include.h>
 
 #include <cstddef>

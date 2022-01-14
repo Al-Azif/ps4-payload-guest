@@ -5,18 +5,18 @@
 
 #include "App.h"
 
+#include <orbis/Sysmodule.h>     // sceSysmoduleLoadModuleInternal
+#include <orbis/SystemService.h> // sceSystemServiceLoadExec
+#include <signal.h>
+#include <sys/mman.h>
+#include <unistd.h>
+
+#include <cstddef> // NULL
+
 #include "libLog.h"
 #include "notifi.h"
 
 #include "Utility.h" // g_Shellcode and Utility::memoryProtectedDestroy()
-
-#include <cstddef>               // NULL
-#include <orbis/Sysmodule.h>     // sceSysmoduleLoadModuleInternal
-#include <orbis/SystemService.h> // sceSystemServiceLoadExec
-
-#include <signal.h>
-#include <sys/mman.h>
-#include <unistd.h>
 
 extern "C" {
 extern int backtrace(void *p_Array, int p_Len);
@@ -45,7 +45,6 @@ void signalHandler(int p_SignalNum) {
     notifi(NULL, "The Payload you attempted to load is corrupted or has crashed\nPlease pick a different one");
   }
 
-  // TODO: If jailbroken do we need to change the elf location?
   sceSystemServiceLoadExec("/app0/guest.elf", NULL);
 }
 

@@ -6,11 +6,11 @@
 #ifndef LANGUAGE_H
 #define LANGUAGE_H
 
-#include <nlohmann_json.hpp>
-
 #include <cstdint>
 #include <string>
 #include <vector>
+
+#include <nlohmann_json.hpp>
 
 class Language {
 public:

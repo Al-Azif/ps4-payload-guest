@@ -5,15 +5,15 @@
 
 #include "Resource.h"
 
-#include "App.h"
-#include "Graphics.h"
-
-#include "libLog.h"
-
 #include <proto-include.h>
 
 #include <cstdio>
 #include <vector>
+
+#include "libLog.h"
+
+#include "App.h"
+#include "Graphics.h"
 
 // Initialize resources
 Resource::Resource(Application *p_App, std::vector<std::string> p_TypefacePaths) {
