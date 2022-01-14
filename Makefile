@@ -15,7 +15,7 @@ INCLUDES      := -Iinclude -Iexternal
 # Additional compile flags
 #   ERRORFLAGS and OTHERFLAGS will be included in C and C++ flags
 #   OTHERCXXFLAGS will only be included in C++ flags
-ERRORFLAGS    := -Wall -Wextra -Wpedantic # -Werror
+ERRORFLAGS    := -Wall -Wextra -Wpedantic -Werror
 OTHERFLAGS    := -std=c17 -O3 -D_DEFAULT_SOURCE
 OTHERCXXFLAGS := -std=c++17
 

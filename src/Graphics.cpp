@@ -36,18 +36,18 @@ static inline uint32_t mix_color(const uint32_t *const p_Background, const uint3
     return *p_foreground;
   }
 
-  v4ui vin = (v4ui){*p_foreground, *p_foreground, *p_Background, *p_Background}; // vload
-  v4ui vt = (v4ui){0x00FF00FF, 0x0000FF00, 0x00FF00FF, 0x0000FF00};              // vload
+  v4ui vin = {*p_foreground, *p_foreground, *p_Background, *p_Background}; // vload
+  v4ui vt = {0x00FF00FF, 0x0000FF00, 0x00FF00FF, 0x0000FF00};              // vload
 
   vin &= vt;
-  vt = (v4ui){a, a, 255 - a, 255 - a}; // vload, reuse t
+  vt = {a, a, 255 - a, 255 - a}; // vload, reuse t
   vin *= vt;
 
-  vt = (v4ui){vin.x + vin.z, vin.y + vin.w, 0xFF00FF00, 0x00FF0000};
-  vin = (v4ui){vt.x & vt.z, vt.y & vt.w};
+  vt = {vin[1] + vin[3], vin[2] + vin[0], 0xFF00FF00, 0x00FF0000};
+  vin = {vt[1] & vt[3], vt[2] & vt[0]};
 
   uint32_t Fg = a + ((*p_Background >> 24) * (255 - a) / 255);
-  return (Fg << 24) | ((vin.x | vin.y) >> 8);
+  return (Fg << 24) | ((vin[1] | vin[2]) >> 8);
 }
 
 // Linearly interpolate x with y over s
