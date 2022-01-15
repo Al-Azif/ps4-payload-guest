@@ -239,12 +239,12 @@ PayloadsView::PayloadsView(Application *p_App) {
   m_PayloadTimer = 0;
 
   // Setup color
-  m_BackgroundColor = {0x0, 0x28, 0x87, 0xFF};
+  m_BackgroundColor = {0x00, 0x28, 0x87, 0xFF};
   m_TextColor = {0xFF, 0xFF, 0xFF, 0xFF};
   m_SubtextColor = {0x90, 0x90, 0x90, 0xFF};
-  m_DividerColor = {0xFF, 0xFF, 0xFF, 0xFF};
-  m_InactiveColor = m_BackgroundColor;
-  m_ActiveColor = {0xFF, 0xFF, 0xFF, 0xDD};
+  m_DividerColor = {0xFF, 0xFF, 0xFF, 0xFF}; // Premix color if not fully opaque
+  m_InactiveColor = m_BackgroundColor;       // Premix color if not fully opaque
+  m_ActiveColor = {0x5C, 0x74, 0xB0, 0xFF};  // Premix color if not fully opaque
 
   scePthreadMutexInit(&m_PayloadsMtx, NULL, "PayloadGuestMTX");
   RefreshPayloadList(true);

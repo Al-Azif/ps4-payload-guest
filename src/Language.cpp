@@ -167,28 +167,28 @@ std::vector<std::string> Language::GetTypefacePaths() {
 
   switch (m_Code) {
   case 0:
-    s_TypefacePath.push_back("/app0/assets/NotoSansJP-Regular.ttf");
+    s_TypefacePath.push_back("/app0/assets/fonts/NotoSansJP-Regular.ttf");
     break;
   case 9:
-    s_TypefacePath.push_back("/app0/assets/NotoSansKR-Regular.ttf");
+    s_TypefacePath.push_back("/app0/assets/fonts/NotoSansKR-Regular.ttf");
     break;
   case 10:
-    s_TypefacePath.push_back("/app0/assets/NotoSansTC-Regular.ttf");
+    s_TypefacePath.push_back("/app0/assets/fonts/NotoSansTC-Regular.ttf");
     break;
   case 11:
-    s_TypefacePath.push_back("/app0/assets/NotoSansSC-Regular.ttf");
+    s_TypefacePath.push_back("/app0/assets/fonts/NotoSansSC-Regular.ttf");
     break;
   case 21:
-    s_TypefacePath.push_back("/app0/assets/NotoSansArabic-Regular.ttf");
+    s_TypefacePath.push_back("/app0/assets/fonts/NotoSansArabic-Regular.ttf");
     break;
   case 27:
-    s_TypefacePath.push_back("/app0/assets/NotoSansThai-Regular.ttf");
+    s_TypefacePath.push_back("/app0/assets/fonts/NotoSansThai-Regular.ttf");
     break;
   default:
     break;
   }
 
-  s_TypefacePath.push_back("/app0/assets/NotoSans-Regular.ttf"); // This is the fallback so we at least have an ASCII table
+  s_TypefacePath.push_back("/app0/assets/fonts/NotoSans-Regular.ttf"); // This is the fallback so we at least have an ASCII table
 
   return s_TypefacePath;
 }
@@ -196,7 +196,7 @@ std::vector<std::string> Language::GetTypefacePaths() {
 nlohmann::json Language::GetData() {
   nlohmann::json s_Data;
   std::string s_LanguagePath;
-  Utility::StrSprintf(s_LanguagePath, "/app0/assets/%02i.json", m_Code);
+  Utility::StrSprintf(s_LanguagePath, "/app0/assets/languages/%02i.json", m_Code);
 
   FILE *s_LanguageFilePointer = std::fopen(s_LanguagePath.c_str(), "r");
   if (!s_LanguageFilePointer) {

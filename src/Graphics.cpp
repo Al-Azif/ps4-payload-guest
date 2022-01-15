@@ -654,7 +654,8 @@ int Graphics::LoadPNGFromMemory(Image *p_Image, unsigned char *p_ImageData, int 
 
   logKernel(LL_Debug, "%s", "PNG Loaded!");
 
-  p_Image->use_alpha = false;
+  p_Image->use_alpha = true;
+
   return 0;
 }
 
