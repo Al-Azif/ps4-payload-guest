@@ -39,6 +39,7 @@ This is a to do list of know issues/planned features. If all of these manage to 
 - [ ] Use `error_notifi.png` for error notifications (?)
 - [ ] 1.00 Release
 
+- [ ] Use [Mira Loader](https://github.com/OpenOrbis/mira-project) to load payloads
 - [ ] Swap to SDL2 for rendering (May fix issues below)
 - [ ] Directly use system typefaces, font library, PNG library, etc (May fix issues below)
 - [ ] Get PNG transparency working correctly
