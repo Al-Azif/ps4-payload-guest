@@ -41,7 +41,7 @@ std::vector<Payload> PayloadsView::ParseJson(const std::string &p_Path) {
   s_RawJson.reserve(s_Filesize + 1);
   std::memset(&s_RawJson[0], '\0', s_Filesize + 1);
 
-  if (std::fread(&s_RawJson[0], s_Filesize, sizeof(char), s_MetaFilePointer) < 0) {
+  if (std::fread(&s_RawJson[0], s_Filesize, sizeof(char), s_MetaFilePointer) != s_Filesize) {
     ShowError(std::string(m_App->Lang->Get("errorMetadataRead") + std::string("\n\n") + m_App->Lang->Get("errorPathOutput")), p_Path.c_str());
     return s_TempOutput;
   }
@@ -314,7 +314,7 @@ int PayloadsView::Update() {
       }
 
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CROSS)) {
-        if (m_Payloads.size() > 0 && m_PayloadSelected >= 0) {
+        if (m_Payloads.size() > 0) {
           if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
             logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
             // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str()); // Pop notification
