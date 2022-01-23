@@ -38,9 +38,9 @@
 [//]: #
   [Al-Azif]: <https://github.com/Azif>
   [theorywrong]: <https://github.com/theorywrong>
-  [OpenOrbis]: <https://github.com/>
-  [sleirsgoevy]: <https://github.com/>
-  [nlohmann]: <https://github.com/>
+  [OpenOrbis]: <https://github.com/OpenOrbis>
+  [sleirsgoevy]: <https://github.com/sleirsgoevy>
+  [nlohmann]: <https://github.com/nlohmann>
 
   [yyoossk]: <https://github.com/yyoossk>
   [Nazky]: <https://github.com/Nazky>
