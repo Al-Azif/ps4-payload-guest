@@ -9,7 +9,7 @@
   "loadingTick3": "Načítání...",
 
   "ok": "Ok",
-  "select": "Zvoit",
+  "select": "Zvolit",
   "refresh": "Obnovit",
   "credits": "Zásluhy",
   "return": "Zpět",
@@ -41,7 +41,7 @@
   "errorSendPayloadRead": "Nelze načíst payload do vyrovnávací paměti",
   "errorSendPayloadCreateSocket": "Nelze vytvořit socket",
   "errorSendPayloadConnect": "Nelze se připojit k serveru",
-  "errorSendPayloadSend": "Unable to send payload",
+  "errorSendPayloadSend": "Nemohl jsem poslat Payload",
 
   "errorShellcodeOpen": "Nemohu otevřít: %s",
   "errorShellcodeMmap": "Chyba v mmap payload",
