@@ -48,5 +48,5 @@
   "errorShellcodeMprotect": "Chyba v mprotect payload",
   "errorShellcodeMunmap": "Neúspěšné munmap payload",
 
-  "creditsText": "GordonRamsayCZ"
+  "creditsText": ""
 }
