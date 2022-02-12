@@ -30,6 +30,7 @@
 [yusufgngor] - Turkish\
 [oneohthree] - Spanish (Latin America)\
 [xx6600xx] - Arabic\
+[GordonRamsayCZ] - Czech\
 [darktohka] - Hungarian\
 [ConfusedDiscord] - Greek\
 [GabrielWizard] - Romanian\
@@ -62,6 +63,7 @@
   [yusufgngor]: <https://github.com/yusufgngor>
   [oneohthree]: <https://github.com/oneohthree>
   [xx6600xx]: <https://github.com/xx6600xx>
+  [GordonRamsayCZ]: <https://github.com/GordonRamsayCZ>
   [darktohka]: <https://github.com/darktohka>
   [ConfusedDiscord]: <https://github.com/ConfusedDiscord>
   [GabrielWizard]: <https://github.com/GabrielWizard>

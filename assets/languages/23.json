@@ -1,0 +1,52 @@
+{
+  "unknownKey": "[NEPŘELOŽENO]",
+
+  "mainTitle": "Hostitel Payloadů",
+  "creditsTitle": "Zásluhy",
+
+  "loadingTick1": "Načítání.",
+  "loadingTick2": "Načítání..",
+  "loadingTick3": "Načítání...",
+
+  "ok": "Ok",
+  "select": "Zvolit",
+  "refresh": "Obnovit",
+  "credits": "Zásluhy",
+  "return": "Zpět",
+
+  "pageIndicator": "Stránka %i / %i",
+
+  "errorFatal": "FATALNÍ CHYBA!",
+  "errorCloseApplication": "Prosím zavřete aplikaci.",
+  "errorLoadLibjbc": "Nemohl jsem načíst libjbc.prx",
+  "errorInitializeLibjbc": "Nemohl jsem inicializovat libjbc",
+  "errorJailbreak": "CHYBA! Jailbreak nenačten",
+
+  "errorPathOutput": "Cesta: %s",
+  "errorIndexOutput": "Index: #%zu",
+  "errorHexOutput": "Chyba: 0x%08x",
+
+  "errorMetadata": "Chyba Metadat",
+  "errorMetadataRead": "Nemohl jsem přečíst `meta.json`",
+  "errorMetadataMalformed": "Poškozený `meta.json`",
+  "errorMetadataMissingName": "Chybí název payloadu",
+  "errorMetadataMissingFilename": "Chybí název souboru payloadu",
+  "errorMetadataNullName": "NULL název payoadu",
+  "errorMetadataMissingPayloadFile": "Nemohl jsem najít payload",
+
+  "errorNoPayloads": "Nejsou k dispozici ŽÁDNÉ payloady :(",
+
+  "errorSendPayloadOpen": "Nelze otevřít payload",
+  "errorSendPayloadBuffer": "Nelze uložit payload do mezipaměti",
+  "errorSendPayloadRead": "Nelze načíst payload do vyrovnávací paměti",
+  "errorSendPayloadCreateSocket": "Nelze vytvořit socket",
+  "errorSendPayloadConnect": "Nelze se připojit k serveru",
+  "errorSendPayloadSend": "Nemohl jsem poslat Payload",
+
+  "errorShellcodeOpen": "Nemohu otevřít: %s",
+  "errorShellcodeMmap": "Chyba v mmap payload",
+  "errorShellcodeMprotect": "Chyba v mprotect payload",
+  "errorShellcodeMunmap": "Neúspěšné munmap payload",
+
+  "creditsText": ""
+}
