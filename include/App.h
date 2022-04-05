@@ -10,7 +10,7 @@
 
 #include "View.h"
 
-#define APP_VER 0.97
+#define APP_VER 0.98
 
 class Language;
 class Controller;
