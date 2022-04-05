@@ -215,6 +215,9 @@ void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
   std::memcpy(s_Writable, s_Buffer, s_Filesize);
   std::free(s_Buffer);
 
+  // void (*payload_start)() = (void (*)())s_Executable;
+  // payload_start();
+
   pthread_t s_Loader;
   pthread_create(&s_Loader, NULL, (void *(*)(void *))s_Executable, NULL);
   // pthread_join(s_Loader, NULL);
@@ -222,18 +225,18 @@ void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
   logKernel(LL_Debug, "%s", "Exiting LaunchShellcode()");
 }
 
-void Utility::SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath) {
+bool Utility::SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath) {
   Application *s_App = p_App;
 
   if (!s_App) {
     logKernel(LL_Debug, "%s", "Invalid application object");
-    return;
+    return false;
   }
 
   FILE *s_PayloadFilePointer = std::fopen(p_PayloadPath.c_str(), "r");
   if (!s_PayloadFilePointer) {
-    notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadOpen").c_str());
-    return;
+    // notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadOpen").c_str());
+    return false;
   }
 
   std::fseek(s_PayloadFilePointer, 0, SEEK_END);
@@ -243,23 +246,23 @@ void Utility::SendPayload(Application *p_App, const std::string p_IpAddress, uin
   void *s_PayloadBuffer = std::calloc(sizeof(char), s_PayloadFilesize);
   if (!s_PayloadBuffer) {
     std::fclose(s_PayloadFilePointer);
-    notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadBuffer").c_str());
-    return;
+    // notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadBuffer").c_str());
+    return false;
   }
 
   if (std::fread(s_PayloadBuffer, sizeof(char), s_PayloadFilesize, s_PayloadFilePointer) <= 0) {
     std::fclose(s_PayloadFilePointer);
     std::free(s_PayloadBuffer);
-    notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadRead").c_str());
-    return;
+    // notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadRead").c_str());
+    return false;
   }
   std::fclose(s_PayloadFilePointer);
 
   int s_SocketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0);
   if (s_SocketFileDescriptor < 0) {
     std::free(s_PayloadBuffer);
-    notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadCreateSocket").c_str());
-    return;
+    // notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadCreateSocket").c_str());
+    return false;
   }
 
   struct sockaddr_in s_ServerAddress;
@@ -271,19 +274,21 @@ void Utility::SendPayload(Application *p_App, const std::string p_IpAddress, uin
 
   if (connect(s_SocketFileDescriptor, (struct sockaddr *)&s_ServerAddress, sizeof(s_ServerAddress)) < 0) {
     std::free(s_PayloadBuffer);
-    notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadConnect").c_str());
-    return;
+    // notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadConnect").c_str());
+    return false;
   }
 
   if (send(s_SocketFileDescriptor, s_PayloadBuffer, s_PayloadFilesize, MSG_DONTWAIT) < 0) {
     close(s_SocketFileDescriptor);
     std::free(s_PayloadBuffer);
-    notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadSend").c_str());
-    return;
+    // notifi(NULL, "%s", s_App->Lang->Get("errorSendPayloadSend").c_str());
+    return false;
   }
 
   close(s_SocketFileDescriptor);
   std::free(s_PayloadBuffer);
+
+  return true;
 }
 
 // // Remplace a string inside a chain

@@ -39,7 +39,7 @@ public:
   static int MemoryProtectedGetSize(MemoryProtected *p_Memory, size_t *p_Size);
 
   static void LaunchShellcode(Application *p_App, const std::string &p_Path);
-  static void SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath);
+  static bool SendPayload(Application *p_App, const std::string p_IpAddress, uint16_t p_Port, const std::string &p_PayloadPath);
 
   template <typename I>
   static I AlignUp(I p_Value, I p_Align) {
