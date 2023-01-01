@@ -314,18 +314,16 @@ int PayloadsView::Update() {
       }
 
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CROSS)) {
-        if (m_Payloads.size() > 0) {
-          if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
-            logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
-            // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str()); // Pop notification
-            if (!Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location)) { // Send to GoldHEN's loader
-              Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location); // Launch here
-            }
-            RefreshPayloadList(false);
-            m_PayloadTimer = sceKernelGetProcessTime();
-          } else {
-            logKernel(LL_Debug, "Skip loading due to timer: %s", m_Payloads[m_PayloadSelected].location.c_str());
-          }
+        bool is_payload_sent = sendPayloads(9020);
+        if (is_payload_sent) {
+          RefreshPayloadList(false);
+        }
+      }
+
+      if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CIRCLE)) {
+        bool is_payload_sent = sendPayloads(9021);
+        if (is_payload_sent) {
+          RefreshPayloadList(false);
         }
       }
     }
@@ -489,20 +487,23 @@ int PayloadsView::Render() {
       m_App->Graph->DrawText(ok, m_App->Res->m_Typefaces, icon_x, text_y, m_TextColor, m_TextColor);
     } else {
       std::string select = m_App->Lang->Get("select");
+      std::string selectMira = m_App->Lang->Get("selectMira");
       std::string refresh = m_App->Lang->Get("refresh");
       std::string credit = m_App->Lang->Get("credits");
 
       FontSize selectSize;
+      FontSize selectMiraSize;
       FontSize refreshSize;
       FontSize creditSize;
 
       m_App->Graph->SetFontSize(m_App->Res->m_Typefaces, FOOTER_FONT_SIZE);
 
       m_App->Graph->GetTextSize(select, m_App->Res->m_Typefaces, &selectSize);
+      m_App->Graph->GetTextSize(selectMira, m_App->Res->m_Typefaces, &selectMiraSize);
       m_App->Graph->GetTextSize(refresh, m_App->Res->m_Typefaces, &refreshSize);
       m_App->Graph->GetTextSize(credit, m_App->Res->m_Typefaces, &creditSize);
 
-      int s_IconWidth = (selectSize.width + refreshSize.width + creditSize.width) + (4 * FOOTER_ICON_SIZE) + (4 * FOOTER_TEXT_BORDER);
+      int s_IconWidth = (selectSize.width + selectMiraSize.width + refreshSize.width + creditSize.width) + (4 * FOOTER_ICON_SIZE) + (4 * FOOTER_TEXT_BORDER);
       int s_IconX = (s_ScreenWidth - BORDER_X) - s_IconWidth;
       int s_IconY = (s_ScreenHeight - FOOTER_SIZE + 5) + FOOTER_BORDER_Y;
       int s_TextY = s_IconY + ((FOOTER_ICON_SIZE / 2) - (selectSize.height / 2));
@@ -515,6 +516,15 @@ int PayloadsView::Render() {
       s_IconX += FOOTER_ICON_SIZE + FOOTER_TEXT_BORDER;
       m_App->Graph->DrawText(select, m_App->Res->m_Typefaces, s_IconX, s_TextY, m_TextColor, m_TextColor);
       s_IconX += selectSize.width + FOOTER_FONT_SIZE;
+
+      if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
+        m_App->Graph->DrawSizedPNG(&m_App->Res->m_Circle, s_IconX, s_IconY, FOOTER_ICON_SIZE, FOOTER_ICON_SIZE);
+      } else {
+        m_App->Graph->DrawSizedPNG(&m_App->Res->m_Lock, s_IconX, s_IconY, FOOTER_ICON_SIZE, FOOTER_ICON_SIZE);
+      }
+      s_IconX += FOOTER_ICON_SIZE + FOOTER_TEXT_BORDER;
+      m_App->Graph->DrawText(selectMira, m_App->Res->m_Typefaces, s_IconX, s_TextY, m_TextColor, m_TextColor);
+      s_IconX += selectMiraSize.width + FOOTER_FONT_SIZE;
 
       m_App->Graph->DrawSizedPNG(&m_App->Res->m_Square, s_IconX, s_IconY, FOOTER_ICON_SIZE, FOOTER_ICON_SIZE);
       s_IconX += FOOTER_ICON_SIZE + FOOTER_TEXT_BORDER;
