@@ -314,7 +314,7 @@ int PayloadsView::Update() {
       }
 
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CROSS)) {
-        bool is_payload_sent = sendPayloads(9090);
+        bool is_payload_sent = sendPayloads(9020);
         if (is_payload_sent) {
           RefreshPayloadList(false);
         }
