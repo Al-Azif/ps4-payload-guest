@@ -17,6 +17,7 @@
 #include "Graphics.h"
 #include "Utility.h"
 #include "View.h"
+#include "libLog.h"
 
 class Application;
 class PayloadsView;
