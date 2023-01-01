@@ -314,18 +314,16 @@ int PayloadsView::Update() {
       }
 
       if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CROSS)) {
-        if (m_Payloads.size() > 0) {
-          if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
-            logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
-            // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str()); // Pop notification
-            if (!Utility::SendPayload(m_App, "127.0.0.1", 9090, m_Payloads[m_PayloadSelected].location)) { // Send to GoldHEN's loader
-              Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location); // Launch here
-            }
-            RefreshPayloadList(false);
-            m_PayloadTimer = sceKernelGetProcessTime();
-          } else {
-            logKernel(LL_Debug, "Skip loading due to timer: %s", m_Payloads[m_PayloadSelected].location.c_str());
-          }
+        bool is_payload_sent = sendPayloads(9090);
+        if (is_payload_sent) {
+          RefreshPayloadList(false);
+        }
+      }
+
+      if (m_App->Ctrl->GetButtonPressed(ORBIS_PAD_BUTTON_CIRCLE)) {
+        bool is_payload_sent = sendPayloads(9090);
+        if (is_payload_sent) {
+          RefreshPayloadList(false);
         }
       }
     }

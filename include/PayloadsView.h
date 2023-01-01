@@ -74,6 +74,24 @@ private:
 
   void RefreshPayloadList(bool p_Reset);
   void CleanupPayloadList(bool p_Reset);
+
+  bool sendPayloads(int port = 9090) {
+    if (m_Payloads.size() > 0) {
+      if (m_PayloadTimer == 0 || m_PayloadTimer + (5 * 1000000) < sceKernelGetProcessTime()) {
+        logKernel(LL_Debug, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str());
+        // notifi(NULL, "Loading: %s", m_Payloads[m_PayloadSelected].location.c_str()); // Pop notification
+        if (!Utility::SendPayload(m_App, "127.0.0.1", port, m_Payloads[m_PayloadSelected].location)) { // Send to GoldHEN's loader
+          Utility::LaunchShellcode(m_App, m_Payloads[m_PayloadSelected].location);                     // Launch here
+        }
+        m_PayloadTimer = sceKernelGetProcessTime();
+        return true;
+      } else {
+        logKernel(LL_Debug, "Skip loading due to timer: %s", m_Payloads[m_PayloadSelected].location.c_str());
+        return false;
+      }
+    }
+    return false;
+  }
 };
 
 #endif
