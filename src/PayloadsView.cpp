@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "libLog.h"
-// #include "notifi.h"
+#include "notifi.h"
 
 #include "App.h"
 #include "Controller.h"

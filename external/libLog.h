@@ -43,30 +43,30 @@ void _logPrintHex(enum LogLevels p_LogLevel, enum PrintTypes p_PrintType, bool p
 void _logPrintBin(enum LogLevels p_LogLevel, enum PrintTypes p_PrintType, const char *p_Input, uint16_t p_Port, const void *p_Pointer, int p_Length);
 
 bool logSocketOpen(const char *p_IpAddress, uint16_t p_Port);
-bool logSocketClose();
-bool logSocketIsOpen();
+bool logSocketClose(void);
+bool logSocketIsOpen(void);
 
-const char *logSocketGetIpAddress();
-uint16_t logSocketGetPort();
+const char *logSocketGetIpAddress(void);
+uint16_t logSocketGetPort(void);
 
 bool logFileOpen(const char *p_Path);
-bool logFileClose();
-const char *logFileGetFilename();
+bool logFileClose(void);
+const char *logFileGetFilename(void);
 
 void logSetLogLevel(enum LogLevels p_LogLevel);
-enum LogLevels logGetLogLevel();
+enum LogLevels logGetLogLevel(void);
 
 void logPrintSetLogLevel(enum LogLevels p_LogLevel);
-enum LogLevels logPrintGetLogLevel();
+enum LogLevels logPrintGetLogLevel(void);
 
 void logKernelSetLogLevel(enum LogLevels p_LogLevel);
-enum LogLevels logKernelGetLogLevel();
+enum LogLevels logKernelGetLogLevel(void);
 
 void logFileSetLogLevel(enum LogLevels p_LogLevel);
-enum LogLevels logFileGetLogLevel();
+enum LogLevels logFileGetLogLevel(void);
 
 void logSocketSetLogLevel(enum LogLevels p_LogLevel);
-enum LogLevels logSocketGetLogLevel();
+enum LogLevels logSocketGetLogLevel(void);
 
 #define logPrint(p_LogLevel, ...) _logPrint(p_LogLevel, PT_Print, true, __FILE__, __LINE__, __VA_ARGS__)
 #define logPrintUnformatted(p_LogLevel, ...) _logPrint(p_LogLevel, PT_Print, false, __FILE__, __LINE__, __VA_ARGS__)

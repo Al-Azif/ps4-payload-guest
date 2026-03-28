@@ -70,7 +70,7 @@ Graphics::Graphics() {
   int s_Ret;
 
   // Load freetype module
-  s_Ret = sceSysmoduleLoadModule(0x009A);
+  s_Ret = sceSysmoduleLoadModule(ORBIS_SYSMODULE_FREETYPE_OL);
   if (s_Ret < 0) {
     logKernel(LL_Debug, "%s", "Failed to load freetype module");
   }
@@ -534,7 +534,7 @@ void Graphics::DrawTextContainer(const std::string &p_Text, std::vector<FT_Face>
   int s_XOffset = 0;
   int s_YOffset = 0;
   int s_CWidth = 0;
-  int s_CHeight = 0;
+  // int s_CHeight = 0;
   int s_Padding = 5;
 
   size_t s_TypefaceIndex = 0;
@@ -577,7 +577,7 @@ void Graphics::DrawTextContainer(const std::string &p_Text, std::vector<FT_Face>
     // word wrapping checks
     if ((s_CWidth + s_Slot->bitmap.width) >= p_MaxWidth) {
       s_CWidth = 0;
-      s_CHeight += s_Slot->bitmap.width * 2;
+      // s_CHeight += s_Slot->bitmap.width * 2;
       s_XOffset = 0;
       s_YOffset += (s_Slot->bitmap.width * 2) + s_Padding;
     } else {

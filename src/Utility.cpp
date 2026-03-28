@@ -236,6 +236,11 @@ void Utility::LaunchShellcode(Application *p_App, const std::string &p_Path) {
 
 // TODO: Finish/Test this function
 bool Utility::SendPayloadPost(Application *p_App, const std::string p_Url, const std::string &p_PayloadPath, bool raw) {
+  (void)p_App;
+  (void)p_Url;
+  (void)p_PayloadPath;
+  (void)raw;
+
   // Application *s_App = p_App;
   bool s_Return = false;
 

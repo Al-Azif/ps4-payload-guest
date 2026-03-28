@@ -23,8 +23,8 @@ extern int backtrace(void *p_Array, int p_Len);
 }
 
 // TODO: Add to SDK
-#define ORBIS_SYSMODULE_INTERNAL_SYSUTIL 0x80000026
-#define ORBIS_SYSMODULE_INTERNAL_libSceGnmDriver 0x80000052
+static const OrbisSysModuleInternal ORBIS_SYSMODULE_INTERNAL_SYSUTIL = (OrbisSysModuleInternal)0x80000026;
+static const OrbisSysModuleInternal ORBIS_SYSMODULE_INTERNAL_libSceGnmDriver = (OrbisSysModuleInternal)0x80000052;
 
 void signalHandler(int p_SignalNum) {
   void *s_Array[100];
